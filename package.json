@@ -5,6 +5,7 @@
   "scripts": {},
   "dependencies": {
     "@james-bennett-295/logger": "^2.2.1",
+    "axios": "^0.26.1",
     "discord.js": "^13.6.0",
     "quick.db": "^7.1.3",
     "string-similarity": "^4.0.4"
