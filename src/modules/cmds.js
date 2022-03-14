@@ -116,7 +116,7 @@ function onMessageCreate(cfg, client, db, msg) {
 
         collector.on("collect", (i) => {
             if (i.customId === btnYesId) {
-                handleCmd(cfg, client, msg, args, matches.bestMatch.target);
+                handleCmd(cfg, client, db, msg, args, matches.bestMatch.target);
             };
             i.message.delete();
         });

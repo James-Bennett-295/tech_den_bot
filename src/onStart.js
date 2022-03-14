@@ -2,6 +2,9 @@
 
 function onStart(cfg, client, db) {
 
+    const d = new Date();
+    client.processStartTime = d.getTime();
+
     client.btnId = 0;
 
     client.modules = {};
