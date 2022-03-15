@@ -9,5 +9,9 @@ module.exports = {
 
         logger.info("Logged in as " + client.user.tag);
 
+        client.mainGuild = client.guilds.cache.get("935192357811404800");
+
+        client.modules.status.onReady(cfg, client, db);
+
     },
 };
