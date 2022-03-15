@@ -21,7 +21,7 @@ module.exports = {
 
             embed
                 .setTitle("Help: Category list. \ud83d\udcdc")
-                .setDescription("Run `!help category <category>` to get a list of commands in a category.\n\n**Categories:**\n`" + client.cmdCategories.join("`\n`") + "`");
+                .setDescription("Run `" + cfg.cmds.prefix + "help category <category>` to get a list of commands in a category.\n\n**Categories:**\n`" + client.cmdCategories.join("`\n`") + "`");
             msg.reply({ embeds: [embed] });
 
             // if category
@@ -37,7 +37,7 @@ module.exports = {
                 let categoryName = client.cmdCategories[categoriesLower.indexOf(args[1].toLowerCase())];
                 embed
                     .setTitle("Help: " + categoryName + " category. \ud83d\udcdc")
-                    .setDescription("Run `!help command <command>` to get help with a command.\n\n**Commands:**\n`" + client.categoryCmds[categoryName].join("`\n`") + "`");
+                    .setDescription("Run `" + cfg.cmds.prefix + "help command <command>` to get help with a command.\n\n**Commands:**\n`" + client.categoryCmds[categoryName].join("`\n`") + "`");
                 msg.reply({ embeds: [embed] });
                 // if category doesn't exist
             } else {
@@ -70,7 +70,7 @@ module.exports = {
                     if (i.customId === btnYesId) {
                         embed
                             .setTitle("Help: " + categoryName + " category. \ud83d\udcdc")
-                            .setDescription("Run `!help command <command>` to get help with a command.\n\n**Commands:**\n`" + client.categoryCmds[categoryName].join("`\n`") + "`");
+                            .setDescription("Run `" + cfg.cmds.prefix + "help command <command>` to get help with a command.\n\n**Commands:**\n`" + client.categoryCmds[categoryName].join("`\n`") + "`");
                         i.update({ content: null, embeds: [embed], components: [] });
                     } else if (i.customId === btnNoId) {
                         i.update({ content: "That category does not exist!", components: [] });
