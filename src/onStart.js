@@ -10,7 +10,7 @@ function onStart(cfg, client, db) {
     client.modules = {};
     client.modules.cmds = require("./modules/cmds.js");
     client.modules.msgDeleteLog = require("./modules/msgDeleteLog.js");
-    client.modules.msgXp = require("./modules/msgXp.js");
+    client.modules.msgRewards = require("./modules/msgRewards.js");
     client.modules.miscCaching = require("./modules/miscCaching.js");
     client.modules.status = require("./modules/status.js");
 

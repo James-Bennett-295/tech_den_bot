@@ -8,9 +8,9 @@
     "cmds": {
         "prefix": ";"
     },
-    "msgXp": {
-        "msgsBetweenXpBoost": 250,
-        "xpBoostAmount": 50,
+    "msgRewards": {
+        "msgsBetweenRewards": 250,
+        "rewardAmount": 50,
         "msgRequirements": {
             "minLength": 15,
             "minWords": 3
