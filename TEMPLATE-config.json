@@ -1,0 +1,36 @@
+{
+    "app": {
+        "token": "BOTTOKEN"
+    },
+    "msgDeleteLog": {
+        "webhookUrl": "WEBHOOKURL"
+    },
+    "cmds": {
+        "prefix": ";"
+    },
+    "msgXp": {
+        "msgsBetweenXpBoost": 250,
+        "xpBoostAmount": 50,
+        "msgRequirements": {
+            "minLength": 15,
+            "minWords": 3
+        }
+    },
+    "guildEmojis": {
+        "arrowPrev": "953033098394755194",
+        "arrowNext": "953033097987883070"
+    },
+    "status": {
+        "cycleTime": 30,
+        "statuses": [
+            [
+                "LISTENING",
+                ";help"
+            ],
+            [
+                "WATCHING",
+                "{userCount} members!"
+            ]
+        ]
+    }
+}
