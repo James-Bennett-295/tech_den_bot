@@ -4,6 +4,8 @@ const discord = require("discord.js");
 
 function onMessageCreate(cfg, client, db, msg) {
 
+    if (msg.author.bot || msg.content.startsWith(cfg.cmds.prefix)) return;
+
     if (
         msg.content.length < cfg.msgRewards.msgRequirements.minLength ||
         msg.content.split(' ').length < cfg.msgRewards.msgRequirements.minWords
