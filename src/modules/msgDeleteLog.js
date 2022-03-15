@@ -18,7 +18,7 @@ function onMessageDelete(cfg, client, db, msg) {
         allowedMentions: { parse: [] },
         files: []
     };
-    if (msg.content !== "") message.content += "\n> " + msg.content;
+    if (msg.content !== "") message.content += "\n>>> " + msg.content;
     msg.attachments.forEach(element => {
         message.files.push({
             attachment: element.attachment
