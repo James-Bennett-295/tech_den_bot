@@ -9,8 +9,9 @@
         "prefix": ";"
     },
     "msgRewards": {
-        "msgsBetweenRewards": 250,
-        "rewardAmount": 50,
+        "msgsBetweenRewards": 15,
+        "rewardAmount": 1,
+        "msgsBetweenLevelUp": 250,
         "msgRequirements": {
             "minLength": 15,
             "minWords": 3
