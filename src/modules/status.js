@@ -12,8 +12,7 @@ function onReady(cfg, client, db) {
                     {
                         name: cfg.status.statuses[statusNum][1]
                             .replace("{userCount}", members.filter(m => !m.user.bot).size)
-                        ,
-                        type: cfg.status.statuses[statusNum][0]
+                      , type: cfg.status.statuses[statusNum][0]
                     }
                 ],
                 status: "online"

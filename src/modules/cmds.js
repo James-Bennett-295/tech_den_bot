@@ -66,7 +66,7 @@ function onStart(cfg, client, db) {
                 client.categoryCmds[cmd.category].push(cmd.name);
                 if (!client.cmdCategories.includes(cmd.category)) client.cmdCategories.push(cmd.category);
             } catch (err) {
-                logger.error("[cmds module]: failed to load command file: " + folder + "/" + file);
+                logger.error("[cmds module]: failed to load command file: " + folder + "/" + file + "\nERROR: " + err);
             };
         };
     };

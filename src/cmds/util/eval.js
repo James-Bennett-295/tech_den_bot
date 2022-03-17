@@ -14,7 +14,7 @@ module.exports = {
 
         let evaled = eval(code);
 
-        msg.reply(evaled.toString().slice(0, 2000));
+        msg.reply(evaled.toString().slice(0, 2000)).catch((e) => {});
 
 	},
 };

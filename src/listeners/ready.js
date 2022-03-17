@@ -12,6 +12,7 @@ module.exports = {
         client.mainGuild = client.guilds.cache.get("935192357811404800");
 
         client.modules.status.onReady(cfg, client, db);
+        client.modules.reminders.onReady(cfg, client, db);
 
     },
 };
