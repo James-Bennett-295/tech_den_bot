@@ -4,10 +4,10 @@ module.exports = {
     name: "remindme",
     minArgs: 2,
     usage: "<time until reminder. Example: \"2d,7m\" (2 days + 7 minutes)> <reminder text>",
-    cooldown: 1000,
+    cooldown: 30000,
     description: "See if the bot is responding.",
     category: "Utility",
-    botOwnerOnly: true,
+    botOwnerOnly: false,
     execute(cfg, client, db, msg, args) {
 
         let splitTime = args[0].split(',');
