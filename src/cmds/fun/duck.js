@@ -16,7 +16,7 @@ module.exports = {
         let embed = new discord.MessageEmbed()
             .setColor("AQUA")
             .setTitle("Here is your duck! \ud83e\udd86")
-            .setDescription("Source: random-d.uk")
+            .setFooter({ text: "Source: random-d.uk" })
 
 		if (args[0] && args[0].toLowerCase() === "image") {
             let imgChoice = Math.floor(Math.random()*(data.imgCount-2)+1);
@@ -34,7 +34,7 @@ module.exports = {
             };
         };
 
-        msg.reply({ embeds: [embed] });
+        msg.reply({ embeds: [embed] }).catch((e) => {});
 
 	},
 };

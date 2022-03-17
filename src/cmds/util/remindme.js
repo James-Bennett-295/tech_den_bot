@@ -50,7 +50,7 @@ module.exports = {
             user: msg.author.id
         });
 
-        msg.reply("Reminder set for <t:" + Math.floor(remindTime / 1000) + ">");
+        msg.reply("Reminder set for <t:" + Math.floor(remindTime / 1000) + ":R>");
 
     },
 };
