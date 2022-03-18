@@ -24,7 +24,7 @@ module.exports = {
             let breedName = args.join(' ').toLowerCase();
 
             if (breeds.index[breedName]) {
-                url += "?breed_ids=" + breedName;
+                url += "?breed_ids=" + breeds.index[breedName];
             } else {
                 return msg.reply("Breed not found!");
             };
