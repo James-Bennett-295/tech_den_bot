@@ -20,17 +20,26 @@ function onReady(cfg, client, db) {
 
             embed.setDescription(reminders[i].msg);
 
-            client.mainGuild.channels.cache.get(reminders[i].channel).send({
+            let channel = client.mainGuild.channels.cache.get(reminders[i].channel);
+
+            channel.send({
                 content: "<@!" + reminders[i].user + ">",
                 embeds: [embed],
                 allowedMentions: { users: [reminders[i].user] }
             });
 
-            delete reminders[i];
+            channel.messages.fetch(reminders[i].reply)
+                .then((replyMsg) => {
+                    replyMsg.edit("I reminded you at \<t:" + Math.floor(now.getTime() / 1000) + ">").catch((e) => {});
+                    delete reminders[i];
+                    db.set("reminders", reminders);
+                })
+                .catch((e) => {
+                    delete reminders[i];
+                    db.set("reminders", reminders);
+                });
 
         };
-
-        db.set("reminders", reminders);
 
     }, 60000);
 

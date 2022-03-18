@@ -43,14 +43,16 @@ module.exports = {
 
         let remindMsg = args.join(' ');
 
-        db.push("reminders", {
-            time: remindTime,
-            channel: msg.channel.id,
-            msg: remindMsg,
-            user: msg.author.id
-        });
-
-        msg.reply("Reminder set for <t:" + Math.floor(remindTime / 1000) + ":R>");
+        msg.reply("Reminder set for <t:" + Math.floor(remindTime / 1000) + ":R>")
+            .then((replyMsg) => {
+                db.push("reminders", {
+                    time: remindTime,
+                    channel: msg.channel.id,
+                    msg: remindMsg,
+                    user: msg.author.id,
+                    reply: replyMsg.id
+                });
+            });
 
     },
 };
