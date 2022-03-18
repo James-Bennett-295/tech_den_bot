@@ -123,7 +123,7 @@ module.exports = {
                             .setDescription(cmd.description)
                             .addFields(
                                 { name: "Minimum arguments", value: cmd.minArgs.toString() },
-                                { name: "Usage", value: cfg.commands.prefix + cmd.name + " " + (cmd.usage || "") },
+                                { name: "Usage", value: cfg.cmds.prefix + cmd.name + " " + (cmd.usage || "") },
                                 { name: "Cooldown", value: (cmd.cooldown / 1000) + "s" },
                                 { name: "Category", value: cmd.category },
                                 { name: "Bot owner only", value: cmd.botOwnerOnly ? "Yes" : "No" }
@@ -148,7 +148,7 @@ module.exports = {
                     .setDescription(cmd.description)
                     .addFields(
                         { name: "Minimum arguments", value: cmd.minArgs.toString() },
-                        { name: "Usage", value: cfg.commands.prefix + cmd.name + " " + (cmd.usage || "") },
+                        { name: "Usage", value: cfg.cmds.prefix + cmd.name + " " + (cmd.usage || "") },
                         { name: "Cooldown", value: (cmd.cooldown / 1000) + "s" },
                         { name: "Category", value: cmd.category },
                         { name: "Bot owner only", value: cmd.botOwnerOnly ? "Yes" : "No" }
