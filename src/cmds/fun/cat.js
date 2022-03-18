@@ -36,7 +36,7 @@ module.exports = {
                     .setColor("AQUA")
                     .setTitle("Here is your cat! \ud83d\udc31")
                     .setImage(res.data[0].url)
-                    .setFooter({ text: "Source: https://thecatapi.com/" });
+                    .setFooter({ text: "Source: thecatapi.com" });
                 if (res.data[0].breeds.length > 0) {
                     embed.setDescription("Breed: " + res.data[0].breeds[0].name);
                 };
