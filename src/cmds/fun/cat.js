@@ -12,6 +12,7 @@ module.exports = {
     description: "Get a random cat image!",
     category: "Fun",
     botOwnerOnly: false,
+    staffOnly: false,
     execute(cfg, client, db, msg, args) {
 
         if (args[0] && args[0].toLowerCase() === "getbreeds") {

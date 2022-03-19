@@ -11,6 +11,7 @@ module.exports = {
     description: "Convert an image to greyscale.",
     category: "Image Manipulation",
     botOwnerOnly: false,
+    staffOnly: false,
     execute(cfg, client, db, msg, args) {
 
         findImg(msg)

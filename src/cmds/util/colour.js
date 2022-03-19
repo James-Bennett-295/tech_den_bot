@@ -12,6 +12,7 @@ module.exports = {
     description: "View a hex colour.",
     category: "Utility",
     botOwnerOnly: false,
+    staffOnly: false,
     execute(cfg, client, db, msg, args) {
 
         let hex = args[0];

@@ -11,6 +11,7 @@ module.exports = {
     description: "Get help with commands.",
     category: "Utility",
     botOwnerOnly: false,
+    staffOnly: false,
     execute(cfg, client, db, msg, args) {
 
         let embed = new discord.MessageEmbed()

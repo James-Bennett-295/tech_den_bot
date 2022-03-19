@@ -10,6 +10,7 @@ module.exports = {
     description: "Clean up the database.",
     category: "Utility",
     botOwnerOnly: true,
+    staffOnly: false,
     execute(cfg, client, db, msg, args) {
 
         let dbChangesLog = "";

@@ -8,6 +8,7 @@ module.exports = {
     description: "See if the bot is responding.",
     category: "Utility",
     botOwnerOnly: false,
+    staffOnly: false,
     execute(cfg, client, db, msg, args) {
 
         let splitTime = args[0].split(',');

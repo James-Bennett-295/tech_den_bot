@@ -17,6 +17,7 @@ module.exports = {
     description: "Get a meme from Reddit!",
     category: "Fun",
     botOwnerOnly: false,
+    staffOnly: false,
     execute(cfg, client, db, msg, args) {
 
         let subreddit;

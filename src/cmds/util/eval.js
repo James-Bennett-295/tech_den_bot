@@ -8,6 +8,7 @@ module.exports = {
 	description: "Eval JS code.",
 	category: "Utility",
 	botOwnerOnly: true,
+    staffOnly: false,
 	execute(cfg, client, db, msg, args) {
 
 		let code = args.join(' ');

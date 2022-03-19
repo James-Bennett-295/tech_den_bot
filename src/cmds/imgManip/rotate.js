@@ -11,6 +11,7 @@ module.exports = {
     description: "Rotate an image.",
     category: "Image Manipulation",
     botOwnerOnly: false,
+    staffOnly: false,
     execute(cfg, client, db, msg, args) {
 
         findImg(msg)

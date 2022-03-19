@@ -8,6 +8,7 @@ module.exports = {
 	description: "See if the bot is responding.",
 	category: "Utility",
 	botOwnerOnly: false,
+    staffOnly: true,
 	execute(cfg, client, db, msg, args) {
 
 		msg.reply("Pong! \ud83c\udfd3");

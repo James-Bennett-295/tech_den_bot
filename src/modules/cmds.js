@@ -28,6 +28,8 @@ function handleCmd(cfg, client, db, msg, args, cmdName) {
 
     if (cmd.botOwnerOnly && cfg.botOwnerId !== msg.author.id) return msg.reply("Only the bot owner is allowed to use that command!");
 
+    if (cmd.staffOnly && !msg.member.roles.cache.has(cfg.roles.staff)) return msg.reply("Only staff are allowed to use that command!");
+
     if (cmd.minArgs > args.length) {
         if (cmd.minArgs === 1) {
             msg.reply("This command requires **1** argument but you didn't provide any. Run `!help command " + cmdName + "` if you need help with this command.");

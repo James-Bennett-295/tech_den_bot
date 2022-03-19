@@ -11,6 +11,7 @@ module.exports = {
 	description: "Get an image of a duck!",
 	category: "Fun",
 	botOwnerOnly: false,
+    staffOnly: false,
 	execute(cfg, client, db, msg, args) {
 
         let embed = new discord.MessageEmbed()

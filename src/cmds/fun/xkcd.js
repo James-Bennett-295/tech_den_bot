@@ -12,6 +12,7 @@ module.exports = {
     description: "Get a random post from xkcd.com!",
     category: "Fun",
     botOwnerOnly: false,
+    staffOnly: false,
     execute(cfg, client, db, msg, args) {
 
         xkcd.getRandom()
