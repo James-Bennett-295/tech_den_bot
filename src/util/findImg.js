@@ -7,7 +7,7 @@ function findImg(msg) {
             if (!Array.from(msg.attachments.values())[0].contentType.startsWith("image/")) reject("NOT_IMAGE");
             resolve(Array.from(msg.attachments.values())[0].attachment);
         } else {
-            msg.channel.messages.fetch({ limit: 5 }).then(messages => {
+            msg.channel.messages.fetch({ limit: 15 }).then(messages => {
                 let msgsArr = Array.from(messages.values());
                 for (let i in msgsArr) {
                     let firstAttachment = Array.from(msgsArr[i].attachments.values())[0];
