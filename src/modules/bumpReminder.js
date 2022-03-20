@@ -17,8 +17,9 @@ function onMessageCreate(cfg, client, db, msg) {
 
 function onReady(cfg, client, db) {
 
+    let bumpReminder = {};
     try {
-        let bumpReminder = db.get("bumpReminder");
+        bumpReminder = db.get("bumpReminder");
     } catch (e) {};
     if (bumpReminder) {
         let now = new Date();
