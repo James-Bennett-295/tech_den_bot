@@ -17,7 +17,8 @@ const client = new discord.Client({
     intents: [ // https://discord.com/developers/docs/topics/gateway#list-of-intents
         discord.Intents.FLAGS.GUILDS,
         discord.Intents.FLAGS.GUILD_MESSAGES,
-        discord.Intents.FLAGS.GUILD_MEMBERS
+        discord.Intents.FLAGS.GUILD_MEMBERS,
+        discord.Intents.FLAGS.GUILD_INVITES
     ]
 });
 

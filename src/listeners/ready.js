@@ -14,6 +14,7 @@ module.exports = {
         client.modules.status.onReady(cfg, client, db);
         client.modules.reminders.onReady(cfg, client, db);
         client.modules.bumpReminder.onReady(cfg, client, db);
+        client.modules.inviteLog.onReady(cfg, client, db);
 
     },
 };

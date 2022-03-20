@@ -15,6 +15,7 @@ function onStart(cfg, client, db) {
     client.modules.status = require("./modules/status.js");
     client.modules.reminders = require("./modules/reminders.js");
     client.modules.bumpReminder = require("./modules/bumpReminder.js");
+    client.modules.inviteLog = require("./modules/inviteLog.js");
 
     client.modules.msgDeleteLog.onStart(cfg, client, db);
     client.modules.cmds.onStart(cfg, client, db);
