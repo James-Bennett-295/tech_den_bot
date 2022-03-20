@@ -1,6 +1,7 @@
 "use strict";
 
 const discord = require("discord.js");
+const logger = require("@james-bennett-295/logger");
 
 function onReady(cfg, client, db) {
 
@@ -9,6 +10,8 @@ function onReady(cfg, client, db) {
         .setTitle("Reminder! \u23f0");
 
     setInterval(() => {
+
+        logger.debug("[reminders module]: Doing reminders check");
 
         let reminders = db.get("reminders");
 

@@ -1,23 +1,28 @@
 "use strict";
 
 const discord = require("discord.js");
+const logger = require("@james-bennett-295/logger");
 
 function onReady(cfg, client, db) {
+    logger.debug("[inviteLog module]: Caching invites...");
     client.inviteUses = {};
     client.mainGuild.invites.fetch()
         .then((invites) => {
             invites.forEach((invite) => {
                 client.inviteUses[invite.code] = invite.uses;
             });
+            logger.debug("[inviteLog module]: Invites cached!");
         });
 };
 
 function onInviteCreate(cfg, client, db, invite) {
     client.inviteUses[invite.code] = invite.uses;
+    logger.debug("[inviteLog module]: Invite '" + invite.code + "' added to cache");
 };
 
 function onInviteDelete(cfg, client, db, invite) {
     delete client.inviteUses[invite.code];
+    logger.debig("[inviteLog module]: Invite '" + invite.code + "' removed from cache");
 };
 
 function onGuildMemberAdd(cfg, client, db, member) {
