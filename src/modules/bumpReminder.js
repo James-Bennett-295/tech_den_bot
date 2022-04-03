@@ -7,7 +7,7 @@ const bumpCooldown = 7200000; // 2 hours
 
 function onMessageCreate(cfg, client, db, msg) {
 
-    if (msg.author.id === disboardId && msg.embeds[0].description.includes("Bump done!")) {
+    if (msg.author.id === disboardId && msg.embeds.length > 0 && msg.embeds[0].description.includes("Bump done!")) {
         const now = new Date();
         db.set("bumpReminder", { time: now.getTime() + bumpCooldown, channel: msg.channel.id });
         logger.debug("[bumpReminder module]: Bump reminder timeout set");
