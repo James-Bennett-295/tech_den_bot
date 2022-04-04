@@ -23,8 +23,10 @@ module.exports = {
                             .getBufferAsync("image/png")
                             .then((imgBuffer) => {
                                 msg.reply({ files: [{ attachment: imgBuffer, name: "rotate.png" }] }).catch((e) => {});
-                            });
-                    });
+                            })
+                            .catch((err) => { logger.error("[rotate cmd]: Failed to manipulate image: " + err); });
+                    })
+                    .catch((err) => { logger.error("[rotate cmd]: Failed to read image: " + err); });
             })
             .catch((e) => {
                 switch (e) {

@@ -23,8 +23,10 @@ module.exports = {
                             .getBufferAsync("image/png")
                             .then((imgBuffer) => {
                                 msg.reply({ files: [{ attachment: imgBuffer, name: "greyscale.png" }] }).catch((e) => {});
-                            });
-                    });
+                            })
+                            .catch((err) => { logger.error("[greyscale cmd]: Failed to manipulate image: " + err); });
+                    })
+                    .catch((err) => { logger.error("[greyscale cmd]: Jimp failed to read image: " + err); });
             })
             .catch((e) => {
                 switch (e) {

@@ -7,6 +7,8 @@ const stringSimilarity = require("string-similarity");
 
 function handleCmd(cfg, client, db, msg, args, cmdName) {
 
+    if (cfg.cmds.blockedUsers.includes(msg.author.id)) return;
+
     const cmd = client.cmds.get(cmdName);
 
     if (!client.cmdCooldowns.has(cmdName)) {
