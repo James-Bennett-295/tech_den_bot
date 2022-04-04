@@ -14,4 +14,4 @@ module.exports = {
 		msg.reply("Your PP:\t8" + "=".repeat(Math.floor(Math.random() * 12) + 1) + "D");
 
 	},
-};
+}

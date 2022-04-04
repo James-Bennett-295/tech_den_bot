@@ -15,10 +15,10 @@ module.exports = {
         if (db.get("balance." + msg.author.id) < 1) return msg.reply("You can't donate money as you don't have any!");
         if (isNaN(args[0]) || parseInt(args[0]) <= 0) {
             return msg.reply("Invalid number! Make sure the number you entered is valid and above 0.");
-        };
+        }
         if (parseInt(args[0]) > db.get("balance." + msg.author.id)) {
             return msg.reply("You don't have enough money to do that!");
-        };
+        }
 
         let userId = args[1];
         if (args[1].startsWith('<')) userId = userId.slice(3, -1);
@@ -34,4 +34,4 @@ module.exports = {
         });
 
     },
-};
+}

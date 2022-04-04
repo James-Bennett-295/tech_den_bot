@@ -14,7 +14,7 @@ function sendUInfo(msg, member) {
         accCreatedTime: Math.floor(member.user.createdAt / 1000),
         avatarUrl: member.user.displayAvatarURL(),
         avatar: member.user.avatar
-    };
+    }
 
     let embed = new discord.MessageEmbed()
         .setColor("AQUA")
@@ -33,7 +33,7 @@ function sendUInfo(msg, member) {
 
     msg.reply({ embeds: [embed], allowedMentions: { parse: [] } });
 
-};
+}
 
 module.exports = {
     name: "userinfo",
@@ -58,7 +58,7 @@ module.exports = {
             });
         } else {
             sendUInfo(msg, msg.member);
-        };
+        }
 
     },
-};
+}

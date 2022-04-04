@@ -17,4 +17,4 @@ module.exports = {
         client.modules.inviteLog.onReady(cfg, client, db);
 
     },
-};
+}

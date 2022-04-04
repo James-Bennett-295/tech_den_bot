@@ -8,4 +8,4 @@ module.exports = {
         client.modules.inviteLog.onGuildMemberAdd(cfg, client, db, member);
 
     },
-};
+}

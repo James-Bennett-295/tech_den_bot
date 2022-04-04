@@ -32,10 +32,10 @@ module.exports = {
             } else {
                 let gifChoice = Math.floor(Math.random()*(data.gifCount-2)+1);
                 embed.setImage("https://random-d.uk/api/" + data.gifs[gifChoice-1]);
-            };
-        };
+            }
+        }
 
         msg.reply({ embeds: [embed] }).catch((e) => {});
 
 	},
-};
+}

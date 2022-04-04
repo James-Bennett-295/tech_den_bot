@@ -18,4 +18,4 @@ module.exports = {
         msg.reply(evaled.toString().slice(0, 2000)).catch((e) => {});
 
 	},
-};
+}

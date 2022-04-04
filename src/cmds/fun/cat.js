@@ -17,7 +17,7 @@ module.exports = {
 
         if (args[0] && args[0].toLowerCase() === "getbreeds") {
             return msg.reply("**__CAT BREEDS__**\n" + breeds.names.join(", ") + ".").catch((e) => {});
-        };
+        }
 
         let url = "https://api.thecatapi.com/v1/images/search";
 
@@ -28,8 +28,8 @@ module.exports = {
                 url += "?breed_ids=" + breeds.index[breedName];
             } else {
                 return msg.reply("Breed not found!");
-            };
-        };
+            }
+        }
 
         axios.get(url)
             .then((res) => {
@@ -40,9 +40,9 @@ module.exports = {
                     .setFooter({ text: "Source: thecatapi.com" });
                 if (res.data[0].breeds.length > 0) {
                     embed.setDescription("Breed: " + res.data[0].breeds[0].name);
-                };
+                }
                 msg.reply({ embeds: [embed] }).catch((e) => {});
             });
 
     },
-};
+}

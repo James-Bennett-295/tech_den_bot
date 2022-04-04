@@ -6,7 +6,8 @@
         "webhookUrl": "WEBHOOKURL"
     },
     "cmds": {
-        "prefix": ";"
+        "prefix": ";",
+        "blockedUsers": []
     },
     "msgRewards": {
         "msgsBetweenRewards": 15,

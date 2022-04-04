@@ -13,17 +13,17 @@ function findImg(msg) {
                     let firstAttachment = Array.from(msgsArr[i].attachments.values())[0];
                     if (typeof (firstAttachment) !== "undefined") {
                         if (firstAttachment.contentType.startsWith("image/")) resolve(firstAttachment.attachment);
-                    };
+                    }
                     if (msgsArr[i].embeds.length > 0 && msgsArr[i].embeds[0].image) {
                         resolve(msgsArr[i].embeds[0].image.proxyURL);
-                    };
-                };
+                    }
+                }
                 reject("NO_IMAGE");
             });
-        };
+        }
     });
     return promise;
 
-};
+}
 
 module.exports = findImg;

@@ -35,8 +35,8 @@ module.exports = {
                     break;
                 default:
                     return msg.reply("Invalid time format!");
-            };
-        };
+            }
+        }
 
         if (remindTime > 604800000 + now.getTime()) return msg.reply("The time you enter must be no longer than a week!");
 
@@ -56,4 +56,4 @@ module.exports = {
             });
 
     },
-};
+}

@@ -7,7 +7,7 @@ function onStart(cfg, client, db) {
 
     client.btnId = 0;
 
-    client.modules = {};
+    client.modules = {}
     client.modules.cmds = require("./modules/cmds.js");
     client.modules.msgDeleteLog = require("./modules/msgDeleteLog.js");
     client.modules.msgRewards = require("./modules/msgRewards.js");
@@ -21,6 +21,6 @@ function onStart(cfg, client, db) {
     client.modules.cmds.onStart(cfg, client, db);
     client.modules.miscCaching.onStart(cfg, client, db);
 
-};
+}
 
 module.exports = onStart;

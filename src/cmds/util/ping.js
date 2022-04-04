@@ -14,4 +14,4 @@ module.exports = {
 		msg.reply("Pong! \ud83c\udfd3");
 
 	},
-};
+}

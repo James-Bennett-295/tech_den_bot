@@ -8,4 +8,4 @@ module.exports = {
         client.modules.inviteLog.onInviteCreate(cfg, client, db, invite);
 
     },
-};
+}

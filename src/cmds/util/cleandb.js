@@ -27,8 +27,8 @@ module.exports = {
                 if (!memberIds.includes(dbBalanceKeys[i])) {
                     delete dbBalance[dbBalanceKeys[i]];
                     dbChangesLog += "[balance] Removed not-found user: " + dbBalanceKeys[i] + "\n";
-                };
-            };
+                }
+            }
             db.set("balance", dbBalance);
 
             let dbMsgRewardsMsgCount = db.get("msgRewardsMsgCount");
@@ -37,8 +37,8 @@ module.exports = {
                 if (!memberIds.includes(dbMsgRewardsMsgCountKeys[i])) {
                     delete dbMsgRewardsMsgCount[dbMsgRewardsMsgCountKeys[i]];
                     dbChangesLog += "[msgRewardsMsgCount] Removed not-found user: " + dbMsgRewardsMsgCountKeys[i] + "\n";
-                };
-            };
+                }
+            }
             db.set("msgRewardsMsgCount", dbMsgRewardsMsgCount);
 
             let dbReminders = db.get("reminders");
@@ -53,4 +53,4 @@ module.exports = {
         });
 
     },
-};
+}

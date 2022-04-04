@@ -32,7 +32,7 @@ module.exports = {
             let categoriesLower = [];
             for (let i in client.cmdCategories) {
                 categoriesLower.push(client.cmdCategories[i].toLowerCase());
-            };
+            }
             // if category exists
             if (categoriesLower.includes(args[1].toLowerCase())) {
                 let categoryName = client.cmdCategories[categoriesLower.indexOf(args[1].toLowerCase())];
@@ -75,7 +75,7 @@ module.exports = {
                         i.update({ content: null, embeds: [embed], components: [] });
                     } else if (i.customId === btnNoId) {
                         i.update({ content: "That category does not exist!", components: [] });
-                    };
+                    }
                 });
 
                 msg.reply({ content: "That category does not exist! Did you mean `" + categoryName + "`?", components: [row] })
@@ -84,7 +84,7 @@ module.exports = {
                             message.edit({ components: [] });
                         });
                     });
-            };
+            }
 
             // if command
         } else if (args[0].toLowerCase() == "command") {
@@ -132,7 +132,7 @@ module.exports = {
                         i.update({ content: null, embeds: [embed], components: [] });
                     } else if (i.customId === btnNoId) {
                         i.update({ content: "That command does not exist!", components: [] });
-                    };
+                    }
                 });
 
                 msg.reply({ content: "That command does not exist! Did you mean `" + matches.bestMatch.target + "`?", components: [row] })
@@ -156,14 +156,14 @@ module.exports = {
                     );
 
                 msg.reply({ embeds: [embed] });
-            };
+            }
 
             // if not command or category
         } else {
 
             msg.reply("That is not an option!");
 
-        };
+        }
 
     },
-};
+}

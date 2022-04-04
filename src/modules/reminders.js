@@ -42,10 +42,10 @@ function onReady(cfg, client, db) {
                     db.set("reminders", reminders);
                 });
 
-        };
+        }
 
     }, 60000);
 
-};
+}
 
-module.exports = { onReady };
+module.exports = { onReady }

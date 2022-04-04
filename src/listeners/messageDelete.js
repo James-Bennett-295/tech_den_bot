@@ -8,4 +8,4 @@ module.exports = {
         client.modules.msgDeleteLog.onMessageDelete(cfg, client, db, msg);
 
     },
-};
+}

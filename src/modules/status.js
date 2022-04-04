@@ -20,6 +20,6 @@ function onReady(cfg, client, db) {
         });
     }, cfg.status.cycleTime * 1000);
 
-};
+}
 
-module.exports = { onReady };
+module.exports = { onReady }

@@ -28,7 +28,7 @@ module.exports = {
             if (!subredditLs.includes(subreddit)) return msg.reply("That subreddit is not an option! Run `!meme ListSubreddits` to see which subreddits you can choose.");
         } else {
             subreddit = subredditLs[Math.floor(Math.random() * (subredditLs.length - 1))];
-        };
+        }
 
         axios.get("https://www.reddit.com/r/" + subreddit + "/hot.json")
             .then(res => {
@@ -39,7 +39,7 @@ module.exports = {
                     postNum = parseInt(args[1]) - 1;
                 } else {
                     postNum = Math.floor(Math.random() * res.data.data.dist);
-                };
+                }
 
                 let post = res.data.data.children[postNum].data;
 
@@ -60,13 +60,13 @@ module.exports = {
                         let mediaMetadataKeys = [];
                         for (let i in post.gallery_data.items) { // getting keys arr from post.gallery_data.items[i].media_id as post.media_metadata keys aren't always in display order
                             mediaMetadataKeys.push(post.gallery_data.items[i].media_id);
-                        };
+                        }
                         for (let i in mediaMetadataKeys) {
                             imgs.push({
                                 "img": "https://i.redd.it/" + post.media_metadata[mediaMetadataKeys[i]]["s"]["u"].split('?')[0].slice(24),
                                 "caption": (post.gallery_data.items[i].caption || null)
                             });
-                        };
+                        }
 
                         const btnPrevId = (client.btnId++).toString();
                         let btnPrev = new discord.MessageButton()
@@ -105,7 +105,7 @@ module.exports = {
                                 if (imgNum !== imgs.length - 1) imgNum++;
                                 if (imgNum === 1) btnPrev.setDisabled(false);
                                 if (imgNum === imgs.length - 1) btnNext.setDisabled(true);
-                            };
+                            }
                             row = new discord.MessageActionRow()
                                 .addComponents(
                                     btnPrev,
@@ -131,8 +131,8 @@ module.exports = {
                         embed.setImage(post.secure_media.oembed.thumbnail_url.split('?')[0]);
                     } else {
                         embed.setImage(post.thumbnail);
-                    };
-                };
+                    }
+                }
 
                 msg.reply({ embeds: [embed] });
 
@@ -142,4 +142,4 @@ module.exports = {
             });
 
     },
-};
+}

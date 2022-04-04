@@ -14,30 +14,30 @@ function onMessageCreate(cfg, client, db, msg) {
         setTimeout(() => {
             msg.channel.send("This server can now be bumped again!").catch((e) => {});
         }, bumpCooldown);
-    };
+    }
 
-};
+}
 
 function onReady(cfg, client, db) {
 
-    let bumpReminder = {};
+    let bumpReminder = {}
     try {
         bumpReminder = db.get("bumpReminder");
     } catch (e) {
         logger.debug("[bumpReminder module]: Timeout recovery will no be done as failed to get bumpReminder object from database");
-    };
+    }
     if (bumpReminder) {
         let now = new Date();
         if (now.getTime() >= bumpReminder.time) {
             logger.debug("[bumpReminder module]: Timeout recovery will not be done as bump reminder time has passed");
             return;
-        };
+        }
         logger.debug("[bumpReminder module]: Recovering timeout, reminder msg will be sent in " + (bumpReminder.time - now.getTime()) + "ms");
         setTimeout(() => {
             client.mainGuild.channels.cache.get(bumpReminder.channel).send("This server can now be bumped again!").catch((e) => {});
         }, bumpReminder.time - now.getTime());
-    };
+    }
 
-};
+}
 
-module.exports = { onMessageCreate, onReady };
+module.exports = { onMessageCreate, onReady }

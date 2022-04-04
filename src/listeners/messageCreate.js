@@ -10,4 +10,4 @@ module.exports = {
         client.modules.bumpReminder.onMessageCreate(cfg, client, db, msg);
 
     },
-};
+}

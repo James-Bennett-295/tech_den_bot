@@ -19,7 +19,7 @@ module.exports = {
         } catch (e) {
             lockdownEnabled = false;
             db.set("lockdownEnabled", false);
-        };
+        }
 
         msg.reply(lockdownEnabled ? "Disabling lockdown!" : "Enabling lockdown!")
 
@@ -45,8 +45,8 @@ module.exports = {
                     SEND_MESSAGES_IN_THREADS: false,
                 });
                 db.set("lockdownEnabled", true);
-            };
+            }
         });
 
     },
-};
+}

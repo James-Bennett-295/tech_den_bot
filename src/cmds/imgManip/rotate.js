@@ -35,8 +35,8 @@ module.exports = {
                         break;
                     case "NOT_IMAGE":
                         msg.reply("First attached file is not an image!");
-                };
+                }
             });
 
     },
-};
+}

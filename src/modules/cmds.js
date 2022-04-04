@@ -13,7 +13,7 @@ function handleCmd(cfg, client, db, msg, args, cmdName) {
 
     if (!client.cmdCooldowns.has(cmdName)) {
         client.cmdCooldowns.set(cmdName, new discord.Collection());
-    };
+    }
 
     const now = Date.now();
     const timestamps = client.cmdCooldowns.get(cmdName);
@@ -22,8 +22,8 @@ function handleCmd(cfg, client, db, msg, args, cmdName) {
         const expirationTime = timestamps.get(msg.author.id) + cmd.cooldown;
         if (now < expirationTime) {
             return msg.react('\u231b');
-        };
-    };
+        }
+    }
 
     timestamps.set(msg.author.id, now);
     setTimeout(() => timestamps.delete(msg.author.id), cmd.cooldown);
@@ -39,25 +39,25 @@ function handleCmd(cfg, client, db, msg, args, cmdName) {
             msg.reply("This command requires **" + cmd.minArgs + "** arguments but you didn't provide any. Run `!help command " + cmdName + "` if you need help with this command.");
         } else {
             msg.reply("This command requires **" + cmd.minArgs + "** arguments but you only provided **" + args.length + "**. Run `!help command " + cmdName + "` if you need help with this command.");
-        };
+        }
         return;
-    };
+    }
 
     try {
         cmd.execute(cfg, client, db, msg, args);
     } catch (err) {
         logger.error(err);
         msg.reply("Sorry, something went wrong.");
-    };
+    }
 
-};
+}
 
 function onStart(cfg, client, db) {
 
     client.cmds = new discord.Collection();
     client.cmdCooldowns = new discord.Collection();
     client.cmdCategories = [];
-    client.categoryCmds = {};
+    client.categoryCmds = {}
     const cmdFolders = fs.readdirSync("./src/cmds/");
 
     for (const folder of cmdFolders) {
@@ -71,11 +71,11 @@ function onStart(cfg, client, db) {
                 if (!client.cmdCategories.includes(cmd.category)) client.cmdCategories.push(cmd.category);
             } catch (err) {
                 logger.error("[cmds module]: failed to load command file: " + folder + "/" + file + "\nERROR: " + err);
-            };
-        };
-    };
+            }
+        }
+    }
 
-};
+}
 
 function onMessageCreate(cfg, client, db, msg) {
 
@@ -116,12 +116,12 @@ function onMessageCreate(cfg, client, db, msg) {
         const filter = i => (i.customId === btnYesId || i.customId === btnNoId) && i.user.id === msg.author.id && i.message.createdTimestamp > client.processStartTime;
         const collector = msg.channel.createMessageComponentCollector({ filter, time: 60000 });
 
-        let noCmdMsg = {};
+        let noCmdMsg = {}
 
         collector.on("collect", (i) => {
             if (i.customId === btnYesId) {
                 handleCmd(cfg, client, db, msg, args, matches.bestMatch.target);
-            };
+            }
             i.message.delete();
         });
 
@@ -134,8 +134,8 @@ function onMessageCreate(cfg, client, db, msg) {
                 });
             });
 
-    };
+    }
 
-};
+}
 
-module.exports = { onMessageCreate, onStart };
+module.exports = { onMessageCreate, onStart }

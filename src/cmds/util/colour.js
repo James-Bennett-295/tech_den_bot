@@ -23,7 +23,7 @@ module.exports = {
 
         if (isNaN(num) || num < 0 || 16777215 < num) {
             return msg.reply("Invalid colour!");
-        };
+        }
 
         let r = (num >> 16) & 255;
         let g = (num >> 8) & 255;
@@ -58,4 +58,4 @@ module.exports = {
             });
 
     },
-};
+}

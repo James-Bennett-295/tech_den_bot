@@ -4,7 +4,7 @@ const discord = require("discord.js");
 
 function onStart(cfg, client, db) {
     client.msgDeleteLogWebhookClient = new discord.WebhookClient({ url: cfg.msgDeleteLog.webhookUrl });
-};
+}
 
 function onMessageDelete(cfg, client, db, msg) {
 
@@ -17,7 +17,7 @@ function onMessageDelete(cfg, client, db, msg) {
         avatarURL: msg.author.avatarURL(),
         allowedMentions: { parse: [] },
         files: []
-    };
+    }
     if (msg.content !== "") message.content += "\n>>> " + msg.content;
     msg.attachments.forEach(element => {
         message.files.push({
@@ -28,6 +28,6 @@ function onMessageDelete(cfg, client, db, msg) {
 
     client.msgDeleteLogWebhookClient.send(message);
 
-};
+}
 
-module.exports = { onStart, onMessageDelete };
+module.exports = { onStart, onMessageDelete }

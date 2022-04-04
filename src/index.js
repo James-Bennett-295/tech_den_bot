@@ -31,7 +31,7 @@ for (const file of eventFiles) {
         client.once(listener.name, (...args) => listener.execute(cfg, client, db, ...args));
     } else {
         client.on(listener.name, (...args) => listener.execute(cfg, client, db, ...args));
-    };
-};
+    }
+}
 
 client.login(cfg.app.token);

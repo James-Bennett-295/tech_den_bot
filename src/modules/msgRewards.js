@@ -23,12 +23,12 @@ function onMessageCreate(cfg, client, db, msg) {
                 "You are now on level **" + db.get("msgRewardsMsgCount." + msg.author.id) / cfg.msgRewards.msgsBetweenLevelUp + "**!"
             );
         msg.channel.send({ embeds: [embed] });
-    };
+    }
 
     if (db.get("msgRewardsMsgCount." + msg.author.id) % cfg.msgRewards.msgsBetweenRewards === 0) { // if it is reward time
         db.add("balance." + msg.author.id, cfg.msgRewards.rewardAmount);
-    };
+    }
 
-};
+}
 
-module.exports = { onMessageCreate };
+module.exports = { onMessageCreate }

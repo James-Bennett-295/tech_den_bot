@@ -15,4 +15,4 @@ module.exports = {
         msg.reply("Your balance: `" + db.get("balance." + msg.author.id) + "`");
 
 	},
-};
+}

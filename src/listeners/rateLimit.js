@@ -10,4 +10,4 @@ module.exports = {
         logger.error("Discord rate-limit hit! INFO: " + JSON.stringify(info, null, 2));
 
     },
-};
+}
