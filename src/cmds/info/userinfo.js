@@ -27,7 +27,7 @@ function sendUInfo(msg, member) {
             { name: "Username", value: uInfo.username, inline: true },
             { name: "Discriminator", value: uInfo.discrim, inline: true },
             { name: "Account Created Time", value: "<t:" + uInfo.accCreatedTime + ">", inline: true },
-            { name: "Avatar", value: uInfo.avatar }
+            { name: "Avatar", value: (uInfo.avatar || "Default avatar") }
         )
         .setImage(uInfo.avatarUrl);
 
