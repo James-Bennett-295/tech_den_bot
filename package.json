@@ -1,8 +1,9 @@
 {
 	"name": "tech_den_bot",
 	"version": "1.0.0",
-	"main": "./src/index.js",
+	"main": "./src/index.mjs",
 	"scripts": {},
+	"type": "module",
 	"dependencies": {
 		"@james-bennett-295/logger": "^2.2.1",
 		"axios": "^0.26.1",
