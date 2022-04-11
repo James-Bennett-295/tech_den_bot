@@ -5,46 +5,46 @@ const logger = require("@james-bennett-295/logger");
 
 function onReady(cfg, client, db) {
 
-    let embed = new discord.MessageEmbed()
-        .setColor("AQUA")
-        .setTitle("Reminder! \u23f0");
+	let embed = new discord.MessageEmbed()
+		.setColor("AQUA")
+		.setTitle("Reminder! \u23f0");
 
-    setInterval(() => {
+	setInterval(() => {
 
-        logger.debug("[reminders module]: Doing reminders check");
+		logger.debug("[reminders module]: Doing reminders check");
 
-        let reminders = db.get("reminders");
+		let reminders = db.get("reminders");
 
-        let now = new Date();
+		let now = new Date();
 
-        for (let i in reminders) {
+		for (let i in reminders) {
 
-            if (reminders[i] === null || reminders[i].time > now.getTime()) continue;
+			if (reminders[i] === null || reminders[i].time > now.getTime()) continue;
 
-            embed.setDescription(reminders[i].msg);
+			embed.setDescription(reminders[i].msg);
 
-            let channel = client.mainGuild.channels.cache.get(reminders[i].channel);
+			let channel = client.mainGuild.channels.cache.get(reminders[i].channel);
 
-            channel.send({
-                content: "<@!" + reminders[i].user + ">",
-                embeds: [embed],
-                allowedMentions: { users: [reminders[i].user] }
-            });
+			channel.send({
+				content: "<@!" + reminders[i].user + ">",
+				embeds: [embed],
+				allowedMentions: { users: [reminders[i].user] }
+			});
 
-            channel.messages.fetch(reminders[i].reply)
-                .then((replyMsg) => {
-                    replyMsg.edit("I reminded you at \<t:" + Math.floor(now.getTime() / 1000) + ">").catch((e) => {});
-                    delete reminders[i];
-                    db.set("reminders", reminders);
-                })
-                .catch((e) => {
-                    delete reminders[i];
-                    db.set("reminders", reminders);
-                });
+			channel.messages.fetch(reminders[i].reply)
+				.then((replyMsg) => {
+					replyMsg.edit("I reminded you at \<t:" + Math.floor(now.getTime() / 1000) + ">").catch((e) => { });
+					delete reminders[i];
+					db.set("reminders", reminders);
+				})
+				.catch((e) => {
+					delete reminders[i];
+					db.set("reminders", reminders);
+				});
 
-        }
+		}
 
-    }, 60000);
+	}, 60000);
 
 }
 

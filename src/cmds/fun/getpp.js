@@ -8,7 +8,7 @@ module.exports = {
 	description: "Get your pp size!",
 	category: "Fun",
 	botOwnerOnly: false,
-    staffOnly: false,
+	staffOnly: false,
 	execute(cfg, client, db, msg, args) {
 
 		msg.reply("Your PP:\t8" + "=".repeat(Math.floor(Math.random() * 12) + 1) + "D");

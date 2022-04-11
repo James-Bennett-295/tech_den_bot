@@ -11,31 +11,31 @@ module.exports = {
 	description: "Get an image of a duck!",
 	category: "Fun",
 	botOwnerOnly: false,
-    staffOnly: false,
+	staffOnly: false,
 	execute(cfg, client, db, msg, args) {
 
-        let embed = new discord.MessageEmbed()
-            .setColor("AQUA")
-            .setTitle("Here is your duck! \ud83e\udd86")
-            .setFooter({ text: "Source: random-d.uk" })
+		let embed = new discord.MessageEmbed()
+			.setColor("AQUA")
+			.setTitle("Here is your duck! \ud83e\udd86")
+			.setFooter({ text: "Source: random-d.uk" })
 
 		if (args[0] && args[0].toLowerCase() === "image") {
-            let imgChoice = Math.floor(Math.random()*(data.imgCount-2)+1);
-            embed.setImage("https://random-d.uk/api/" + data.imgs[imgChoice-1]);
-        } else if (args[0] && args[0].toLowerCase() === "gif") {
-            let gifChoice = Math.floor(Math.random()*(data.gifCount-2)+1);
-            embed.setImage("https://random-d.uk/api/" + data.gifs[gifChoice-1]);
-        } else {
-            if (Math.random() < 0.5) {
-                let imgChoice = Math.floor(Math.random()*(data.imgCount-2)+1);
-                embed.setImage("https://random-d.uk/api/" + data.imgs[imgChoice-1]);
-            } else {
-                let gifChoice = Math.floor(Math.random()*(data.gifCount-2)+1);
-                embed.setImage("https://random-d.uk/api/" + data.gifs[gifChoice-1]);
-            }
-        }
+			let imgChoice = Math.floor(Math.random() * (data.imgCount - 2) + 1);
+			embed.setImage("https://random-d.uk/api/" + data.imgs[imgChoice - 1]);
+		} else if (args[0] && args[0].toLowerCase() === "gif") {
+			let gifChoice = Math.floor(Math.random() * (data.gifCount - 2) + 1);
+			embed.setImage("https://random-d.uk/api/" + data.gifs[gifChoice - 1]);
+		} else {
+			if (Math.random() < 0.5) {
+				let imgChoice = Math.floor(Math.random() * (data.imgCount - 2) + 1);
+				embed.setImage("https://random-d.uk/api/" + data.imgs[imgChoice - 1]);
+			} else {
+				let gifChoice = Math.floor(Math.random() * (data.gifCount - 2) + 1);
+				embed.setImage("https://random-d.uk/api/" + data.gifs[gifChoice - 1]);
+			}
+		}
 
-        msg.reply({ embeds: [embed] }).catch((e) => {});
+		msg.reply({ embeds: [embed] }).catch((e) => { });
 
 	},
 }

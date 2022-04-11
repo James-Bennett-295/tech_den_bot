@@ -1,47 +1,47 @@
 {
-    "app": {
-        "token": "BOTTOKEN"
-    },
-    "msgDeleteLog": {
-        "webhookUrl": "WEBHOOKURL"
-    },
-    "cmds": {
-        "prefix": ";",
-        "blockedUsers": []
-    },
-    "msgRewards": {
-        "msgsBetweenRewards": 15,
-        "rewardAmount": 2,
-        "msgsBetweenLevelUp": 250,
-        "msgRequirements": {
-            "minLength": 15,
-            "minWords": 3
-        }
-    },
-    "guildEmojis": {
-        "arrowPrev": "953033098394755194",
-        "arrowNext": "953033097987883070"
-    },
-    "roles": {
-        "staff": "944635111251517471",
-        "member": "944635509030928455"
-    },
-    "status": {
-        "cycleTime": 30,
-        "statuses": [
-            [
-                "LISTENING",
-                ";help"
-            ],
-            [
-                "WATCHING",
-                "{userCount} members!"
-            ]
-        ]
-    },
-    "botOwnerId": "688488105418031142",
-    "lockdownCategories": [
-        "947278057855656038",
-        "948998294238027817"
-    ]
+	"app": {
+		"token": "BOTTOKEN"
+	},
+	"msgDeleteLog": {
+		"webhookUrl": "WEBHOOKURL"
+	},
+	"cmds": {
+		"prefix": ";",
+		"blockedUsers": []
+	},
+	"msgRewards": {
+		"msgsBetweenRewards": 15,
+		"rewardAmount": 2,
+		"msgsBetweenLevelUp": 250,
+		"msgRequirements": {
+			"minLength": 15,
+			"minWords": 3
+		}
+	},
+	"guildEmojis": {
+		"arrowPrev": "953033098394755194",
+		"arrowNext": "953033097987883070"
+	},
+	"roles": {
+		"staff": "944635111251517471",
+		"member": "944635509030928455"
+	},
+	"status": {
+		"cycleTime": 30,
+		"statuses": [
+			[
+				"LISTENING",
+				";help"
+			],
+			[
+				"WATCHING",
+				"{userCount} members!"
+			]
+		]
+	},
+	"botOwnerId": "688488105418031142",
+	"lockdownCategories": [
+		"947278057855656038",
+		"948998294238027817"
+	]
 }
