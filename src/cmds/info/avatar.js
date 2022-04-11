@@ -14,7 +14,11 @@ module.exports = {
         let member;
         if (args[0]) {
             let userId = args[0];
-            if (args[0].startsWith('<')) userId = userId.slice(3, -1);
+            if (args[0].startsWith('<@!')) {
+                userId = userId.slice(3, -1);
+            } else if (args[0].startsWith('<@')) {
+                userId = userId.slice(2, -1);
+            }
             if (userId.length !== 18 || isNaN(userId)) return msg.reply("Invalid user!");
             msg.guild.members.fetch().then((guildMembers) => {
                 let member = guildMembers.get(userId);
