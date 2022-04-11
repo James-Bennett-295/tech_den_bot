@@ -19,6 +19,10 @@ module.exports = {
 
         if (hex.charAt(0) === '#') hex = hex.slice(1, hex.length - 1);
 
+        if (!/^[0-9a-fA-F]{6}$/.test(hex)) {
+            return msg.reply("Invalid hex number!");
+        }
+
         let num = parseInt(hex, 16);
 
         if (isNaN(num) || num < 0 || 16777215 < num) {
