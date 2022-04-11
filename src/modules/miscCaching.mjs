@@ -1,19 +1,19 @@
-import axios from "axios";
+import getJson from "../util/getJson.mjs";
 import fs from "node:fs";
 import logger from "@james-bennett-295/logger";
 
 function onStart(cfg, client, db) {
 
 	logger.debug("[miscCaching module]: Caching randomduk...");
-	axios.get("https://random-d.uk/api/v2/list")
-		.then((res) => {
-			const data = {
-				gifCount: res.data.gif_count,
-				gifs: res.data.gifs,
-				imgCount: res.data.image_count,
-				imgs: res.data.images
+	getJson("https://random-d.uk/api/v2/list")
+		.then((data) => {
+			const randomdukData = {
+				gifCount: data.gif_count,
+				gifs: data.gifs,
+				imgCount: data.image_count,
+				imgs: data.images
 			}
-			fs.writeFile("./cache/randomduk.json", JSON.stringify(data), (err) => {
+			fs.writeFile("./cache/randomduk.json", JSON.stringify(randomdukData), (err) => {
 				if (err) logger.error("[miscCaching module]: Failed to write './cache/randomduk.json' file: " + err);
 			});
 			logger.debug("[miscCaching module]: Cached randomduk");
@@ -23,23 +23,23 @@ function onStart(cfg, client, db) {
 		});
 
 	logger.debug("[miscCaching module]: Caching thecatapiBreeds...");
-	axios.get("https://api.thecatapi.com/v1/breeds")
-		.then((res) => {
-			let breedIds = res.data.map(i => {
+	getJson("https://api.thecatapi.com/v1/breeds")
+		.then((data) => {
+			let breedIds = data.map(i => {
 				return i.id;
 			});
-			let breedNames = res.data.map(i => {
+			let breedNames = data.map(i => {
 				return i.name.toLowerCase();
 			});
-			let data = {
+			let thecatapiBreedsData = {
 				"index": {},
 				"names": []
 			}
 			for (let i in breedIds) {
-				data.index[breedNames[i]] = breedIds[i];
-				data.names.push(breedNames[i]);
+				thecatapiBreedsData.index[breedNames[i]] = breedIds[i];
+				thecatapiBreedsData.names.push(breedNames[i]);
 			}
-			fs.writeFile("./cache/thecatapiBreeds.json", JSON.stringify(data), (err) => {
+			fs.writeFile("./cache/thecatapiBreeds.json", JSON.stringify(thecatapiBreedsData), (err) => {
 				if (err) logger.error("[miscCaching module]: Failed to write './cache/thecatapiBreeds.json' file: " + err);
 			});
 			logger.debug("[miscCaching module]: Cached thecatapiBreeds");

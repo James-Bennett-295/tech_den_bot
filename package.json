@@ -6,7 +6,6 @@
 	"type": "module",
 	"dependencies": {
 		"@james-bennett-295/logger": "^2.2.1",
-		"axios": "^0.26.1",
 		"discord.js": "^13.6.0",
 		"jimp": "^0.16.1",
 		"quick.db": "^7.1.3",

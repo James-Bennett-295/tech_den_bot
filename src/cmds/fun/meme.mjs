@@ -1,4 +1,4 @@
-import axios from "axios";
+import getJson from "../../util/getJson.mjs";
 import logger from "@james-bennett-295/logger";
 import discord from "discord.js";
 
@@ -28,18 +28,18 @@ export default {
 			subreddit = subredditLs[Math.floor(Math.random() * (subredditLs.length - 1))];
 		}
 
-		axios.get("https://www.reddit.com/r/" + subreddit + "/hot.json")
-			.then(res => {
+		getJson("https://www.reddit.com/r/" + subreddit + "/hot.json")
+			.then((data) => {
 
 				let postNum;
 				if (args[1]) {
-					if (isNaN(args[1]) || !(1 <= parseInt(args[1]) && parseInt(args[1]) <= res.data.data.dist)) return msg.reply("That post number is not an option! It must be a number between 1 and " + res.data.data.dist + ".");
+					if (isNaN(args[1]) || !(1 <= parseInt(args[1]) && parseInt(args[1]) <= data.data.dist)) return msg.reply("That post number is not an option! It must be a number between 1 and " + data.data.dist + ".");
 					postNum = parseInt(args[1]) - 1;
 				} else {
-					postNum = Math.floor(Math.random() * res.data.data.dist);
+					postNum = Math.floor(Math.random() * data.data.dist);
 				}
 
-				let post = res.data.data.children[postNum].data;
+				let post = data.data.children[postNum].data;
 
 				if (post.over_18 && !msg.channel.nsfw) return msg.reply("Sorry, but the meme I was going to send is marked as NSFW and this channel is not.");
 
