@@ -1,8 +1,9 @@
 import getJson from "../util/getJson.mjs";
-import fs from "node:fs";
+import writeFile from "@james-bennett-295/writefile";
 import logger from "@james-bennett-295/logger";
 
-function doCaching() {
+function onStart(cfg, client, db) {
+
 	logger.debug("[miscCaching module]: Caching randomduk...");
 	getJson("https://random-d.uk/api/v2/list")
 		.then((data) => {
@@ -12,9 +13,10 @@ function doCaching() {
 				imgCount: data.image_count,
 				imgs: data.images
 			}
-			fs.writeFile("./cache/randomduk.json", JSON.stringify(randomdukData), (err) => {
-				if (err) logger.error("[miscCaching module]: Failed to write './cache/randomduk.json' file: " + err);
-			});
+			writeFile("./cache/randomduk.json", JSON.stringify(randomdukData))
+				.catch(() => {
+					logger.error("[miscCaching module]: Failed to write './cache/randomduk.json' file: " + err);
+				})
 			logger.debug("[miscCaching module]: Cached randomduk");
 		})
 		.catch((err) => {
@@ -38,29 +40,15 @@ function doCaching() {
 				thecatapiBreedsData.index[breedNames[i]] = breedIds[i];
 				thecatapiBreedsData.names.push(breedNames[i]);
 			}
-			fs.writeFile("./cache/thecatapiBreeds.json", JSON.stringify(thecatapiBreedsData), (err) => {
-				if (err) logger.error("[miscCaching module]: Failed to write './cache/thecatapiBreeds.json' file: " + err);
-			});
+			writeFile("./cache/thecatapiBreeds.json", JSON.stringify(thecatapiBreedsData))
+				.catch((err) => {
+					logger.error("[miscCaching module]: Failed to write './cache/thecatapiBreeds.json' file: " + err);
+				});
 			logger.debug("[miscCaching module]: Cached thecatapiBreeds");
 		})
 		.catch((err) => {
 			logger.error("[miscCaching module]: Failed to fetch data from https://api.thecatapi.com/v1/breeds\nERROR: " + err);
 		});
-}
-
-function onStart(cfg, client, db) {
-
-	if (fs.existsSync("./cache/")) {
-		logger.debug("[miscCaching module]: dir ./cache/ already exists");
-		doCaching();
-	} else {
-		logger.debug("[miscCaching module]: dir ./cache/ does not exist, creating...");
-		fs.mkdir("./cache/", (err) => {
-			if (err) return logger.error("[miscCaching module]: Failed to create ./cache/ dir: " + err);
-			logger.debug("[miscCaching module]: dir ./cache/ created");
-			doCaching();
-		});
-	}
 
 }
 
