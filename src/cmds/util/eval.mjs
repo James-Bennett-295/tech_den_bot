@@ -29,7 +29,7 @@ export default {
 					fileType = "json";
 					break;
 				case "undefined":
-					msg.reply("EVAL HAD NO OUTPUT");
+					msg.reply("EVAL OUTPUT WAS UNDEFINED");
 					return;
 				default:
 					evalOutStr = evalOut.toString();
