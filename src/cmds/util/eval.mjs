@@ -34,7 +34,7 @@ export default {
 					fileType = "js";
 			}
 			let outFile = new discord.MessageAttachment(Buffer.from(evalOutStr), "EVAL-OUT." + fileType);
-			msg.reply({ content: "**[SUCCESS]**\nTYPE: " + typeof evalOut, files: [outFile] }).catch((err) => {
+			msg.reply({ content: "**[SUCCESS]**\nTYPE: `" + typeof evalOut + "`", files: [outFile] }).catch((err) => {
 				logger.error("[eval cmd]: " + err);
 				msg.reply("Failed to send eval output.");
 			});

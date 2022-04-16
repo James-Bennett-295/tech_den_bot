@@ -2,6 +2,6 @@ cache/
 logs/
 node_modules/
 config.json
-json.sqlite
+database.json
 package-lock.json
 todo

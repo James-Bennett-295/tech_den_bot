@@ -24,7 +24,7 @@ function onReady(cfg, client, db) {
 	} catch (e) {
 		logger.debug("[bumpReminder module]: Timeout recovery will no be done as failed to get bumpReminder object from database");
 	}
-	if (bumpReminder) {
+	if (JSON.stringify(bumpReminder) !== "{}") {
 		let now = new Date();
 		if (now.getTime() >= bumpReminder.time) {
 			logger.debug("[bumpReminder module]: Timeout recovery will not be done as bump reminder time has passed");
