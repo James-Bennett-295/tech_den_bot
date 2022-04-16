@@ -52,4 +52,22 @@ function onStart(cfg, client, db) {
 
 }
 
-export { onStart }
+function onReady(cfg, client, db) {
+	function cacheMemberCount() {
+		logger.debug("[miscCaching module]: Updating memberCount cache...");
+		client.mainGuild.members.fetch().then((members) => {
+			try {
+				client.memberCount = members.filter(m => !m.user.bot).size;
+				logger.debug("[miscCaching module]: memberCount cache updated");
+			} catch (err) {
+				logger.error("[miscCaching module]: Failed to update memberCount cache: " + err);
+			}
+		});
+	}
+	cacheMemberCount();
+	setInterval(() => {
+		cacheMemberCount();
+	}, 900000); // 15 mins
+}
+
+export { onStart, onReady }
