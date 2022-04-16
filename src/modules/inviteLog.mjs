@@ -15,12 +15,12 @@ function onReady(cfg, client, db) {
 
 function onInviteCreate(cfg, client, db, invite) {
 	client.inviteUses[invite.code] = invite.uses;
-	logger.debug("[inviteLog module]: Invite '" + invite.code + "' added to cache");
+	logger.debug("[inviteLog module]: Invite \"" + invite.code + "\" added to cache");
 }
 
 function onInviteDelete(cfg, client, db, invite) {
 	delete client.inviteUses[invite.code];
-	logger.debug("[inviteLog module]: Invite '" + invite.code + "' removed from cache");
+	logger.debug("[inviteLog module]: Invite \"" + invite.code + "\" removed from cache");
 }
 
 function onGuildMemberAdd(cfg, client, db, member) {
