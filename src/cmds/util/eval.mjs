@@ -16,6 +16,8 @@ export default {
 
 		if (code.startsWith("```js")) {
 			code = code.slice(5, -3);
+		} else if (code.startsWith("```mjs")) {
+			code = code.slice(6, -3);
 		}
 
 		try {

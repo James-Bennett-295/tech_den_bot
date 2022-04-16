@@ -9,7 +9,7 @@ function onReady(cfg, client, db) {
 			invites.forEach((invite) => {
 				client.inviteUses[invite.code] = invite.uses;
 			});
-			logger.debug("[inviteLog module]: Invites cached!");
+			logger.debug("[inviteLog module]: Invites cached");
 		});
 }
 
@@ -20,7 +20,7 @@ function onInviteCreate(cfg, client, db, invite) {
 
 function onInviteDelete(cfg, client, db, invite) {
 	delete client.inviteUses[invite.code];
-	logger.debig("[inviteLog module]: Invite '" + invite.code + "' removed from cache");
+	logger.debug("[inviteLog module]: Invite '" + invite.code + "' removed from cache");
 }
 
 function onGuildMemberAdd(cfg, client, db, member) {
