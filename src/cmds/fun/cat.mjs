@@ -65,6 +65,7 @@ export default {
 		let embed = new discord.MessageEmbed()
 			.setColor("AQUA")
 			.setTitle("Here is your cat! \ud83d\udc31")
+			.setURL(imgs[0].img)
 			.setImage(imgs[0].img)
 			.setFooter({ text: "Source: thecatapi.com" });
 		if (imgs[0].breed !== null) embed.setDescription(imgs[0].breed);
@@ -101,7 +102,9 @@ export default {
 
 			if (embed["description"]) delete embed["description"];
 
-			embed.setImage(imgs[imgNum].img);
+			embed
+				.setURL(imgs[imgNum].img)
+				.setImage(imgs[imgNum].img);
 
 			if (imgs[imgNum].breed !== null) embed.setDescription(imgs[imgNum].breed);
 
