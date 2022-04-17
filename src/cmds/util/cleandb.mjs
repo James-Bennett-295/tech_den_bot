@@ -19,6 +19,7 @@ export default {
 				return m.user.id;
 			});
 
+			/* clean balance */
 			let dbBalance = db.get("balance");
 			let dbBalanceKeys = Object.keys(dbBalance);
 			for (let i in dbBalanceKeys) {
@@ -29,6 +30,7 @@ export default {
 			}
 			db.set("balance", dbBalance);
 
+			/* clean msgRewardsMsgCount */
 			let dbMsgRewardsMsgCount = db.get("msgRewardsMsgCount");
 			let dbMsgRewardsMsgCountKeys = Object.keys(dbMsgRewardsMsgCount);
 			for (let i in dbMsgRewardsMsgCountKeys) {
@@ -39,6 +41,7 @@ export default {
 			}
 			db.set("msgRewardsMsgCount", dbMsgRewardsMsgCount);
 
+			/* clean reminders */
 			let dbReminders = db.get("reminders");
 			let dbRemindersOldArrLen = dbReminders.length;
 			dbReminders = dbReminders.filter((reminder) => { return reminder !== null; });

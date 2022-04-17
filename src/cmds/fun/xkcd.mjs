@@ -22,10 +22,11 @@ export default {
 					.setDescription(obj.alt)
 					.setImage(obj.imgUrl)
 					.setFooter({ text: "Source: xkcd.com" });
-				msg.reply({ embeds: [embed] }).catch((e) => { });
+					msg.reply({ embeds: [embed] }).catch((e) => { });
 			})
 			.catch((err) => {
 				logger.error("[xkcd cmd]: xkcd.getRandom() errored: " + err);
+				msg.reply("Sorry but something went wrong while trying to fetch an XKCD post.").catch((e) => { });
 			});
 
 	}

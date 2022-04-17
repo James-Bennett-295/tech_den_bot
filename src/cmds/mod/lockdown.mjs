@@ -24,9 +24,10 @@ export default {
 		msg.guild.channels.cache.forEach((channel) => {
 			if (!channel.parent || !cfg.lockdownCategories.includes(channel.parent.id)) return;
 			if (lockdownEnabled) {
-				channel.permissionOverwrites.create(memberRole, { // https://canary.discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags
+				channel.permissionOverwrites.create(memberRole, { // https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags
 					ADD_REACTIONS: true,
 					SEND_MESSAGES: true,
+					CONNECT: true,
 					SPEAK: true,
 					CREATE_PUBLIC_THREADS: true,
 					CREATE_PRIVATE_THREADS: true,
@@ -37,6 +38,7 @@ export default {
 				channel.permissionOverwrites.create(memberRole, {
 					ADD_REACTIONS: false,
 					SEND_MESSAGES: false,
+					CONNECT: false,
 					SPEAK: false,
 					CREATE_PUBLIC_THREADS: false,
 					CREATE_PRIVATE_THREADS: false,

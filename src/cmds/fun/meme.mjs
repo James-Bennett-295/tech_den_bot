@@ -18,6 +18,7 @@ export default {
 	staffOnly: false,
 	execute: function(cfg, client, db, msg, args) {
 
+		/* input validation */
 		let subreddit;
 		if (args[0]) {
 			if (args[0].toLowerCase() == "listsubreddits") return msg.reply("**Subreddits:**\n\t`r/" + subredditLs.join("`\n\t`r/") + "`");

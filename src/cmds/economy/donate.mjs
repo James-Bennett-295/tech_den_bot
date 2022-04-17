@@ -7,10 +7,13 @@ export default {
 	category: "Economy",
 	botOwnerOnly: false,
 	staffOnly: false,
-	execute: function(cfg, client, db, msg, args) {
+	execute: function (cfg, client, db, msg, args) {
 
+		/* input validation */
 		db.add("balance." + msg.author.id, 0); // so balance.<user> will be created if doesn't exist
-		if (db.get("balance." + msg.author.id) < 1) return msg.reply("You can't donate money as you don't have any!");
+		if (db.get("balance." + msg.author.id) === 0) {
+			return msg.reply("You can't donate money as you don't have any!");
+		}
 		if (isNaN(args[0]) || parseInt(args[0]) <= 0) {
 			return msg.reply("Invalid number! Make sure the number you entered is valid and above 0.");
 		}
@@ -18,16 +21,28 @@ export default {
 			return msg.reply("You don't have enough money to do that!");
 		}
 
+		/* get user id */
 		let userId = args[1];
-		if (args[1].startsWith('<')) userId = userId.slice(3, -1);
-		if (userId.length !== 18 || isNaN(userId)) return msg.reply("Invalid user!");
+		if (userId.startsWith('<@!')) {
+			userId = userId.slice(3, -1);
+		} else if (userId.startsWith('<@')) {
+			userId = userId.slice(2, -1);
+		}
+		if (userId.length !== 18 || isNaN(userId)) {
+			return msg.reply("Invalid user!");
+		}
 
+		/* get member obj and transfer money */
 		client.mainGuild.members.fetch().then((guildMembers) => {
+
 			let member = guildMembers.get(userId);
-			if (typeof (member) === "undefined") return msg.reply("That user could not be found.");
-			if (member.user.bot) return msg.reply("That user is a bot.");
-			db.set("balance." + msg.author.id, db.get("balance." + msg.author.id) - parseInt(args[0]));
-			db.add("balance." + member.user.id, parseInt(args[0]));
+			if (typeof member === "undefined") {
+				return msg.reply("That user could not be found.");
+			}
+			if (member.user.bot) {
+				return msg.reply("That user is a bot.");
+			}
+			db.transfer("balance." + msg.author.id, "balance." + member.user.id, parseInt(args[0]));
 			msg.react('\u2705').catch((e) => { });
 		});
 

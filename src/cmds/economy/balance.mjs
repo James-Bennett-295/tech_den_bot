@@ -7,7 +7,7 @@ export default {
 	category: "Economy",
 	botOwnerOnly: false,
 	staffOnly: false,
-	execute: function(cfg, client, db, msg, args) {
+	execute: function (cfg, client, db, msg, args) {
 
 		db.add("balance." + msg.author.id, 0); // so balance.<user> will be created if doesn't exist
 		msg.reply("Your balance: `" + db.get("balance." + msg.author.id) + "`");

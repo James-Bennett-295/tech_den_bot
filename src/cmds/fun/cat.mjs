@@ -24,7 +24,7 @@ export default {
 		if (args[0]) {
 			let breedName = args.join(' ').toLowerCase();
 
-			if (breeds.index[breedName]) {
+			if (breeds.names.includes(breedName)) {
 				url += "&breed_ids=" + breeds.index[breedName];
 			} else {
 				return msg.reply("Breed not found!");
