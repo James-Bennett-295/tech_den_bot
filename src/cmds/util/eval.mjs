@@ -1,6 +1,8 @@
 import discord from "discord.js";
 import logger from "@james-bennett-295/logger";
 
+let botTokenPattern = /[a-zA-Z0-9+/=\-_]{24}\.[a-zA-Z0-9+/=\-_]{6}\.[a-zA-Z0-9+/=\-_]{27}/;
+
 export default {
 	name: "eval",
 	minArgs: 1,
@@ -35,13 +37,20 @@ export default {
 					evalOutStr = evalOut.toString();
 					fileType = "js";
 			}
+			if (botTokenPattern.test(evalOutStr)) {
+				return msg.reply("EVAL OUTPUT CONTAINED A VALID BOT TOKEN SO WAS NOT SENT");
+			}
 			let outFile = new discord.MessageAttachment(Buffer.from(evalOutStr), "EVAL-OUT." + fileType);
 			msg.reply({ content: "**[SUCCESS]**\nTYPE: `" + typeof evalOut + "`", files: [outFile] }).catch((err) => {
 				logger.error("[eval cmd]: " + err);
 				msg.reply("Failed to send eval output.");
 			});
 		} catch (err) {
-			let errFile = new discord.MessageAttachment(Buffer.from(err.toString()), "EVAL-ERR.js");
+			const errStr = err.toString();
+			if (botTokenPattern.test(errStr)) {
+				return msg.reply("EVAL ERROR CONTAINED VALID BOT TOKEN SO WAS NOT SENT");
+			}
+			const errFile = new discord.MessageAttachment(Buffer.from(errStr), "EVAL-ERR.js");
 			msg.reply({ content: "**[ERROR]**", files: [errFile] }).catch((err) => {
 				logger.error("[eval cmd]: " + err);
 				msg.reply("Failed to send eval error.");
