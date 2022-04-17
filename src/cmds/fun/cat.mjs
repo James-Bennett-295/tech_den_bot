@@ -111,6 +111,11 @@ export default {
 			onCollect(i);
 		});
 
-		msg.reply({ components: [row], embeds: [embed] });
+		msg.reply({ components: [row], embeds: [embed] })
+			.then((message) => {
+				collector.on("end", (collected) => {
+					message.edit({ components: [] });
+				});
+			});
 	}
 }
