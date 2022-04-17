@@ -2,7 +2,7 @@ import discord from "discord.js";
 
 function onMessageCreate(cfg, client, db, msg) {
 
-	if (msg.author.bot || msg.content.startsWith(cfg.cmds.prefix)) return;
+	if (msg.content.startsWith(cfg.cmds.prefix)) return;
 
 	if (
 		msg.content.replace(' ', '').length < cfg.msgRewards.msgRequirements.minLength ||

@@ -6,7 +6,6 @@ function onStart(cfg, client, db) {
 
 function onMessageDelete(cfg, client, db, msg) {
 
-	if (msg.author.bot || msg.webhookId) return;
 	if (msg.channel.type === "dm") return;
 
 	let message = {
