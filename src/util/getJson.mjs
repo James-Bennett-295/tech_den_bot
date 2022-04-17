@@ -8,7 +8,7 @@ function getJson(url) {
 		const req = https.request({
 			hostname: urlObj.hostname,
 			port: 443,
-			path: urlObj.pathname,
+			path: urlObj.pathname + urlObj.search,
 			method: "GET"
 		}, (res) => {
 

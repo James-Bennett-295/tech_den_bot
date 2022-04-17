@@ -17,8 +17,8 @@ export default {
 
 		const msgCount = parseInt(args[0]);
 
-		if (msgCount < 2 || msgCount > 100) {
-			return msg.reply("The message count must be between 2 and 100.");
+		if (msgCount < 2 || msgCount > 99) {
+			return msg.reply("The message count must be between 2 and 99.");
 		}
 
 		msg.react("\ud83d\udd01"); // :reload:
@@ -37,7 +37,6 @@ export default {
 						return;
 					}
 					message.delete().catch((e) => { });
-					console.log("del")
 					index++;
 				});
 
