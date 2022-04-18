@@ -14,6 +14,7 @@ const onStart = async (cfg, client, db) => {
 	client.modules.reminders = await import("./modules/reminders.mjs");
 	client.modules.bumpReminder = await import("./modules/bumpReminder.mjs");
 	client.modules.inviteLog = await import("./modules/inviteLog.mjs");
+	client.modules.strReact = await import("./modules/strReact.mjs");
 
 	client.modules.msgDeleteLog.onStart(cfg, client, db);
 	client.modules.cmds.onStart(cfg, client, db);
