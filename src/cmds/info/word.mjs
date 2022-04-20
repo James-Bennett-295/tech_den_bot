@@ -15,7 +15,7 @@ export default {
 	usage: "<word>",
 	cooldown: 2500,
 	description: "Get information about a word.",
-	category: "Info",
+	category: "Information",
 	botOwnerOnly: false,
 	staffOnly: false,
 	execute: function (cfg, client, db, msg, args) {

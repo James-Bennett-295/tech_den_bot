@@ -4,7 +4,7 @@ export default {
 	usage: "<user ID/mention>",
 	cooldown: 2000,
 	description: "Get a user's avatar.",
-	category: "Info",
+	category: "Information",
 	botOwnerOnly: false,
 	staffOnly: false,
 	execute: function(cfg, client, db, msg, args) {
