@@ -53,21 +53,31 @@ function onStart(cfg, client, db) {
 }
 
 function onReady(cfg, client, db) {
-	function cacheMemberCount() {
-		logger.debug("[miscCaching module]: Updating memberCount cache...");
-		client.mainGuild.members.fetch().then((members) => {
-			try {
-				client.memberCount = members.filter(m => !m.user.bot).size;
-				logger.debug("[miscCaching module]: memberCount cache updated");
-			} catch (err) {
-				logger.error("[miscCaching module]: Failed to update memberCount cache: " + err);
-			}
-		});
-	}
-	cacheMemberCount();
-	setInterval(() => {
-		cacheMemberCount();
-	}, 900000); // 15 mins
+	logger.debug("[miscCaching module]: Caching memberCount...");
+	client.mainGuild.members.fetch().then((members) => {
+		try {
+			client.memberCount = members.filter(m => !m.user.bot).size;
+			logger.debug("[miscCaching module]: memberCount cached");
+		} catch (err) {
+			logger.error("[miscCaching module]: Failed to cache memberCount: " + err);
+		}
+	});
 }
 
-export { onStart, onReady }
+function onGuildMemberAdd(cfg, client, db, member) {
+	if (typeof client.memberCount === "undefined") {
+		return logger.debug("[miscCaching module]: Not adding new member to memberCount cache as client.memberCount is undefined");
+	}
+	client.memberCount++;
+	logger.debug("[miscCaching module]: Added new member to memberCount cache");
+}
+
+function onGuildMemberRemove(cfg, client, db, member) {
+	if (typeof client.memberCount === "undefined") {
+		return logger.debug("[miscCaching module]: Not removing old member from memberCount cache as client.memberCount is undefined");
+	}
+	client.memberCount--;
+	logger.debug("[miscCaching module]: Removed old member from memberCount cache");
+}
+
+export { onStart, onReady, onGuildMemberAdd, onGuildMemberRemove }
