@@ -31,8 +31,8 @@ const client = new discord.Client({
 onStart(cfg, client, db);
 
 const eventFiles = fs.readdirSync("./src/listeners/").filter(file => file.endsWith(".mjs"));
-for (const file of eventFiles) {
-	const listenerMjs = await import("./listeners/" + file);
+for (let i = 0; i < eventFiles.length; i++) {
+	const listenerMjs = await import("./listeners/" + eventFiles[i]);
 	const listener = listenerMjs.default;
 	if (listener.once) {
 		client.once(listener.name, (...args) => listener.execute(cfg, client, db, ...args));
