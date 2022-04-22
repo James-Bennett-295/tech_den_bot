@@ -14,7 +14,7 @@ export default {
 		}
 
 		let fahrTmp = parseInt(args[0]);
-		let celsTmp = (fahrTmp - 32) * 5/9;
+		let celsTmp = (fahrTmp - 32) * 5 / 9;
 
 		celsTmp = Math.ceil(celsTmp * 100000) / 100000; // Round to 5 decimal places
 
