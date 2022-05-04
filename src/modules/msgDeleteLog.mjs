@@ -27,4 +27,7 @@ function onMessageDelete(cfg, client, db, msg) {
 
 }
 
-export { onStart, onMessageDelete }
+export {
+	onStart,
+	onMessageDelete
+}
