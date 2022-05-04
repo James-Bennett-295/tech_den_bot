@@ -38,4 +38,7 @@ function onReady(cfg, client, db) {
 
 }
 
-export { onMessageCreate, onReady }
+export {
+	onMessageCreate,
+	onReady
+}

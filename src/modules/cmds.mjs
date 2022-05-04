@@ -136,4 +136,7 @@ function onMessageCreate(cfg, client, db, msg) {
 
 }
 
-export { onMessageCreate, onStart }
+export {
+	onMessageCreate,
+	onStart
+}

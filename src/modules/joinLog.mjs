@@ -44,4 +44,6 @@ function onGuildMemberAdd(cfg, client, db, member) {
 		});
 }
 
-export { onGuildMemberAdd }
+export {
+	onGuildMemberAdd
+}

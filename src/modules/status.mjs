@@ -38,4 +38,6 @@ function onReady(cfg, client, db) {
 
 }
 
-export { onReady }
+export {
+	onReady
+}

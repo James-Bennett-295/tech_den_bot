@@ -25,4 +25,6 @@ function onMessageCreate(cfg, client, db, msg) {
 
 }
 
-export { onMessageCreate }
+export {
+	onMessageCreate
+}

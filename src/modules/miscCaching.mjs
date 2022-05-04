@@ -100,4 +100,12 @@ function onInviteDelete(cfg, client, db, invite) {
 	logger.debug("[miscCaching module]: Invite \"" + invite.code + "\" removed from cache");
 }
 
-export { onStart, onReady, onGuildMemberAdd, onGuildMemberRemove, onInviteCreate, onInviteDelete }
+export {
+	onStart,
+	onReady,
+	onGuildMemberAdd,
+	onGuildMemberRemove,
+	onInviteCreate,
+	onInviteDelete
+}
+
