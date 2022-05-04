@@ -3,7 +3,7 @@ import logger from "@james-bennett-295/logger";
 export default {
 	name: "ready",
 	once: true,
-	execute: function(cfg, client, db) {
+	execute: function (cfg, client, db) {
 
 		logger.info("Logged in as " + client.user.tag);
 
@@ -12,7 +12,6 @@ export default {
 		client.modules.status.onReady(cfg, client, db);
 		client.modules.reminders.onReady(cfg, client, db);
 		client.modules.bumpReminder.onReady(cfg, client, db);
-		client.modules.joinLog.onReady(cfg, client, db);
 		client.modules.miscCaching.onReady(cfg, client, db);
 
 	}

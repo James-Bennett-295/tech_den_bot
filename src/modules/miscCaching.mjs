@@ -62,6 +62,16 @@ function onReady(cfg, client, db) {
 			logger.error("[miscCaching module]: Failed to cache memberCount: " + err);
 		}
 	});
+
+	logger.debug("[miscCaching module]: Caching invites...");
+	client.inviteUses = {}
+	client.mainGuild.invites.fetch()
+		.then((invites) => {
+			invites.forEach((invite) => {
+				client.inviteUses[invite.code] = invite.uses;
+			});
+			logger.debug("[miscCaching module]: Invites cached");
+		});
 }
 
 function onGuildMemberAdd(cfg, client, db, member) {
@@ -80,4 +90,14 @@ function onGuildMemberRemove(cfg, client, db, member) {
 	logger.debug("[miscCaching module]: Removed old member from memberCount cache");
 }
 
-export { onStart, onReady, onGuildMemberAdd, onGuildMemberRemove }
+function onInviteCreate(cfg, client, db, invite) {
+	client.inviteUses[invite.code] = invite.uses;
+	logger.debug("[miscCaching module]: Invite \"" + invite.code + "\" added to cache");
+}
+
+function onInviteDelete(cfg, client, db, invite) {
+	delete client.inviteUses[invite.code];
+	logger.debug("[miscCaching module]: Invite \"" + invite.code + "\" removed from cache");
+}
+
+export { onStart, onReady, onGuildMemberAdd, onGuildMemberRemove, onInviteCreate, onInviteDelete }

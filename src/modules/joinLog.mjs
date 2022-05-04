@@ -1,27 +1,4 @@
 import discord from "discord.js";
-import logger from "@james-bennett-295/logger";
-
-function onReady(cfg, client, db) {
-	logger.debug("[joinLog module]: Caching invites...");
-	client.inviteUses = {}
-	client.mainGuild.invites.fetch()
-		.then((invites) => {
-			invites.forEach((invite) => {
-				client.inviteUses[invite.code] = invite.uses;
-			});
-			logger.debug("[joinLog module]: Invites cached");
-		});
-}
-
-function onInviteCreate(cfg, client, db, invite) {
-	client.inviteUses[invite.code] = invite.uses;
-	logger.debug("[joinLog module]: Invite \"" + invite.code + "\" added to cache");
-}
-
-function onInviteDelete(cfg, client, db, invite) {
-	delete client.inviteUses[invite.code];
-	logger.debug("[joinLog module]: Invite \"" + invite.code + "\" removed from cache");
-}
 
 function onGuildMemberAdd(cfg, client, db, member) {
 	client.mainGuild.invites.fetch()
@@ -67,4 +44,4 @@ function onGuildMemberAdd(cfg, client, db, member) {
 		});
 }
 
-export { onReady, onGuildMemberAdd, onInviteCreate, onInviteDelete }
+export { onGuildMemberAdd }
