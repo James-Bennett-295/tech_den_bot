@@ -23,6 +23,10 @@ function onReady(cfg, client, db) {
 
 			let channel = client.mainGuild.channels.cache.get(reminders[i].channel);
 
+			if (typeof channel === "undefined") {
+				return logger.debug("[reminders module]: Not sending reminder as typeof channel is \"undefined\"");
+			}
+
 			channel.send({
 				content: "<@!" + reminders[i].user + ">",
 				embeds: [embed],
