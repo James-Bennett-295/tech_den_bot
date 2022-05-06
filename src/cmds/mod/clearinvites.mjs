@@ -38,7 +38,7 @@ Times Used:      ${invites[i].uses}
 				msg.react("\u2705").catch((e) => { }); // :white_check_mark:
 
 				const logFile = new discord.MessageAttachment(Buffer.from(inviteDataStr), "oldInvitesData.txt");
-				msg.reply({ files: [logFile] })//.catch((e) => {});
+				msg.reply({ files: [logFile] }).catch((e) => {});
 			})
 			.catch((err) => {
 				logger.error("[clearinvites cmd]: Failed to fetch mainGuild invites: " + err);
