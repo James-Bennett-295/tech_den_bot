@@ -1,3 +1,5 @@
+import logger from "@james-bennett-295/logger";
+
 export default {
 	name: "balance",
 	minArgs: 0,
@@ -9,8 +11,21 @@ export default {
 	staffOnly: false,
 	execute: function (cfg, client, db, msg, args) {
 
-		db.add("balance." + msg.author.id, 0); // so balance.<user> will be created if doesn't exist
-		msg.reply("Your balance: `" + db.get("balance." + msg.author.id) + "`");
+		db.get(`
+			SELECT *
+			FROM balance
+			WHERE user = ?;
+		`, msg.author.id, (err, row) => {
+			if (err !== null) {
+				logger.error("[balance cmd]: Failed to fetch user's balance from database: " + err);
+				msg.reply("Sorry but I failed to get your balance.").catch((e) => { });
+				return;
+			}
+			if (typeof row === "undefined") {
+				return msg.reply("Your balance: `0`").catch((e) => { });
+			}
+			msg.reply("Your balance: `" + row.balance + "`").catch((e) => { })
+		});
 
 	}
 }

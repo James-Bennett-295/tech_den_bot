@@ -7,7 +7,7 @@ export default {
 	category: "Utility",
 	botOwnerOnly: false,
 	staffOnly: false,
-	execute: function(cfg, client, db, msg, args) {
+	execute: function (cfg, client, db, msg, args) {
 
 		let splitTime = args[0].split(',');
 		let now = new Date();
@@ -16,17 +16,17 @@ export default {
 		for (let i in splitTime) {
 			if (splitTime[i].length < 2) return msg.reply("Invalid time format!");
 			switch (splitTime[i].charAt(splitTime[i].length - 1)) {
-				case "m":
+				case 'm':
 					n = parseInt(splitTime[i].slice(0, -1));
 					if (isNaN(n)) return msg.reply("Invalid time format!");
 					remindTime += n * 60000;
 					break;
-				case "h":
+				case 'h':
 					n = parseInt(splitTime[i].slice(0, -1));
 					if (isNaN(n)) return msg.reply("Invalid time format!");
 					remindTime += n * 3600000;
 					break;
-				case "d":
+				case 'd':
 					n = parseInt(splitTime[i].slice(0, -1));
 					if (isNaN(n)) return msg.reply("Invalid time format!");
 					remindTime += n * 86400000;
@@ -44,13 +44,10 @@ export default {
 
 		msg.reply("Reminder set for <t:" + Math.floor(remindTime / 1000) + ":R>")
 			.then((replyMsg) => {
-				db.push("reminders", {
-					time: remindTime,
-					channel: msg.channel.id,
-					msg: remindMsg,
-					user: msg.author.id,
-					reply: replyMsg.id
-				});
+				db.run(`
+					INSERT INTO reminders (time, channel, msg, user, reply)
+					VALUES (?, ?, ?, ?, ?);
+				`, remindTime.toString(), msg.channel.id, remindMsg, msg.author.id, replyMsg.id);
 			});
 
 	}

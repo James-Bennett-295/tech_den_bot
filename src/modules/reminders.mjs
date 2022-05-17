@@ -11,40 +11,40 @@ function onReady(cfg, client, db) {
 
 		logger.debug("[reminders module]: Doing reminders check");
 
-		let reminders = db.get("reminders");
+		const now = new Date();
 
-		let now = new Date();
+		db.each(`
+			SELECT *
+			FROM reminders;
+		`, (err, reminder) => {
 
-		for (let i in reminders) {
+			if (parseInt(reminder.time) > now.getTime()) return;
 
-			if (reminders[i] === null || reminders[i].time > now.getTime()) continue;
+			embed.setDescription(reminder.msg);
 
-			embed.setDescription(reminders[i].msg);
-
-			let channel = client.mainGuild.channels.cache.get(reminders[i].channel);
+			const channel = client.mainGuild.channels.cache.get(reminder.channel);
 
 			if (typeof channel === "undefined") {
 				return logger.debug("[reminders module]: Not sending reminder as typeof channel is \"undefined\"");
 			}
 
 			channel.send({
-				content: "<@!" + reminders[i].user + ">",
+				content: "<@!" + reminder.user + ">",
 				embeds: [embed],
-				allowedMentions: { users: [reminders[i].user] }
+				allowedMentions: { users: [reminder.user] }
 			});
 
-			channel.messages.fetch(reminders[i].reply)
+			channel.messages.fetch(reminder.reply)
 				.then((replyMsg) => {
 					replyMsg.edit("I reminded you at \<t:" + Math.floor(now.getTime() / 1000) + ">").catch((e) => { });
-					delete reminders[i];
-					db.set("reminders", reminders);
 				})
-				.catch((e) => {
-					delete reminders[i];
-					db.set("reminders", reminders);
-				});
+				.catch((e) => { });
 
-		}
+			db.run(`
+				DELETE FROM reminders
+				WHERE id = ?;
+			`, reminder.id);
+		});
 
 	}, 60000);
 
