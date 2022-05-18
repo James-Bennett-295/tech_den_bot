@@ -23,7 +23,7 @@ export default {
 		let word = args[0];
 
 		if (!wordPattern.test(word)) {
-			return msg.reply("The word you entered is invalid.");
+			return msg.reply("The word you entered is invalid.").catch((e) => { });
 		}
 
 		getJson("https://api.dictionaryapi.dev/api/v2/entries/en/" + word)
@@ -41,10 +41,10 @@ export default {
 			})
 			.catch((err) => {
 				if (err.status === 404) {
-					return msg.reply("No definitions found.");
+					return msg.reply("No definitions found.").catch((e) => { });
 				}
 				logger.error("[word cmd]: Failed to fetch word info: " + err);
-				msg.reply("Sorry but something went wrong while trying to fetch the word info.");
+				msg.reply("Sorry but something went wrong while trying to fetch the word info.").catch((e) => { });
 			});
 
 	}

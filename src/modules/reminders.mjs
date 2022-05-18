@@ -32,7 +32,7 @@ function onReady(cfg, client, db) {
 				content: "<@!" + reminder.user + ">",
 				embeds: [embed],
 				allowedMentions: { users: [reminder.user] }
-			});
+			}).catch((e) => { });
 
 			channel.messages.fetch(reminder.reply)
 				.then((replyMsg) => {

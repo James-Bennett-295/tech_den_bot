@@ -13,11 +13,11 @@ export default {
 
 		/* input validation */
 		if (isNaN(args[0])) {
-			return msg.reply("The message count provided is invalid!");
+			return msg.reply("The message count provided is invalid!").catch((e) => { });
 		}
 		const msgCount = parseInt(args[0]);
 		if (msgCount < 2 || msgCount > 99) {
-			return msg.reply("The message count must be between 2 and 99.");
+			return msg.reply("The message count must be between 2 and 99.").catch((e) => { });
 		}
 
 		msg.react("\ud83d\udd01"); // :reload:

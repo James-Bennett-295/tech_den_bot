@@ -29,10 +29,10 @@ export default {
 			.catch((e) => {
 				switch (e) {
 					case "NO_IMAGE":
-						msg.reply("No image was found!");
+						msg.reply("No image was found!").catch((e) => { });
 						break;
 					case "NOT_IMAGE":
-						msg.reply("First attached file is not an image!");
+						msg.reply("First attached file is not an image!").catch((e) => { });
 				}
 			});
 

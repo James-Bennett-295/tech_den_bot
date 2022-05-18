@@ -12,7 +12,7 @@ export default {
 	execute: function (cfg, client, db, msg, args) {
 
 		if (!fractPattern.test(args[0])) {
-			return msg.reply("Invalid fraction!");
+			return msg.reply("Invalid fraction!").catch((e) => { });
 		}
 
 		const [numer, denom] = args[0].split("/");
@@ -24,7 +24,7 @@ export default {
 
 		const fractStr = numer / grtstCmnDenom + "/" + denom / grtstCmnDenom;
 
-		msg.reply(fractStr);
+		msg.reply(fractStr).catch((e) => { });
 
 	}
 }

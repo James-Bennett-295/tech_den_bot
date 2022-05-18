@@ -9,7 +9,7 @@ export default {
 	staffOnly: false,
 	execute: function(cfg, client, db, msg, args) {
 
-		msg.reply("Your PP:\t8" + "=".repeat(Math.floor(Math.random() * 12) + 1) + "D");
+		msg.reply("Your PP:\t8" + "=".repeat(Math.floor(Math.random() * 12) + 1) + "D").catch((e) => { });
 
 	}
 }

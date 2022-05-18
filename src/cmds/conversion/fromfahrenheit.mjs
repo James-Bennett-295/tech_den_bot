@@ -18,7 +18,7 @@ export default {
 
 		celsTmp = Math.ceil(celsTmp * 100000) / 100000; // Round to 5 decimal places
 
-		msg.reply(celsTmp + "\u00b0C");
+		msg.reply(celsTmp + "\u00b0C").catch((e) => { });
 
 	}
 }

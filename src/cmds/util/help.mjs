@@ -21,12 +21,12 @@ export default {
 			embed
 				.setTitle("Help: Category list. \ud83d\udcdc")
 				.setDescription("Run `" + cfg.cmds.prefix + "help category <category>` to get a list of commands in a category.\n\n**Categories:**\n`" + client.cmdCategories.join("`\n`") + "`");
-			msg.reply({ embeds: [embed] });
+			msg.reply({ embeds: [embed] }).catch((e) => { });
 
 			// if category
 		} else if (args[0].toLowerCase() == "category") {
 
-			if (args.length < 2) return msg.reply("You must specify a category!");
+			if (args.length < 2) return msg.reply("You must specify a category!").catch((e) => { });
 			let categoriesLower = [];
 			for (let i in client.cmdCategories) {
 				categoriesLower.push(client.cmdCategories[i].toLowerCase());
@@ -37,7 +37,7 @@ export default {
 				embed
 					.setTitle("Help: " + categoryName + " category. \ud83d\udcdc")
 					.setDescription("Run `" + cfg.cmds.prefix + "help command <command>` to get help with a command.\n\n**Commands:**\n`" + client.categoryCmds[categoryName].join("`\n`") + "`");
-				msg.reply({ embeds: [embed] });
+				msg.reply({ embeds: [embed] }).catch((e) => { });
 				// if category doesn't exist
 			} else {
 
@@ -81,13 +81,14 @@ export default {
 						collector.on("end", (collected) => {
 							message.edit({ components: [] });
 						});
-					});
+					})
+					.catch((e) => { });
 			}
 
 			// if command
 		} else if (args[0].toLowerCase() == "command") {
 
-			if (args.length < 2) return msg.reply("You must specify a command!");
+			if (args.length < 2) return msg.reply("You must specify a command!").catch((e) => { });
 
 			// if command doesn't exist
 			if (!client.cmds.has(args[1].toLowerCase())) {
@@ -138,7 +139,8 @@ export default {
 						collector.on("end", (collected) => {
 							message.edit({ components: [] });
 						});
-					});
+					})
+					.catch((e) => { });
 				// if command exists
 			} else {
 				const cmd = client.cmds.get(args[1].toLowerCase());
@@ -153,13 +155,13 @@ export default {
 						{ name: "Bot owner only", value: cmd.botOwnerOnly ? "Yes" : "No" }
 					);
 
-				msg.reply({ embeds: [embed] });
+				msg.reply({ embeds: [embed] }).catch((e) => { });
 			}
 
 			// if not command or category
 		} else {
 
-			msg.reply("That is not an option!");
+			msg.reply("That is not an option!").catch((e) => { });
 
 		}
 

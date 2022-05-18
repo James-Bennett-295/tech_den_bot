@@ -29,7 +29,7 @@ function sendUInfo(msg, member) {
 		)
 		.setImage(uInfo.avatarUrl);
 
-	msg.reply({ embeds: [embed], allowedMentions: { parse: [] } });
+	msg.reply({ embeds: [embed], allowedMentions: { parse: [] } }).catch((e) => { });
 
 }
 
@@ -48,10 +48,10 @@ export default {
 		if (args[0]) {
 			let userId = args[0];
 			if (args[0].startsWith('<')) userId = userId.slice(3, -1);
-			if (userId.length !== 18 || isNaN(userId)) return msg.reply("Invalid user!");
+			if (userId.length !== 18 || isNaN(userId)) return msg.reply("Invalid user!").catch((e) => { });
 			msg.guild.members.fetch().then((guildMembers) => {
 				let member = guildMembers.get(userId);
-				if (typeof (member) === "undefined") return msg.reply("That user could not be found.");
+				if (typeof (member) === "undefined") return msg.reply("That user could not be found.").catch((e) => { });
 				sendUInfo(msg, member);
 			});
 		} else {

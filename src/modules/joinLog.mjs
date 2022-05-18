@@ -40,7 +40,7 @@ function onGuildMemberAdd(cfg, client, db, member) {
 						{ name: "Account Created Time", value: "<t:" + Math.floor(msg.author.createdAt.getTime() / 1000) + ">" }
 					)
 			}
-			logChannel.send({ embeds: [embed], allowedMentions: { parse: [] } });
+			logChannel.send({ embeds: [embed], allowedMentions: { parse: [] } }).catch((e) => { });
 		});
 }
 

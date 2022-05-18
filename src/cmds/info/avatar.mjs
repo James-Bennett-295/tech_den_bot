@@ -17,14 +17,14 @@ export default {
 			} else if (args[0].startsWith('<@')) {
 				userId = userId.slice(2, -1);
 			}
-			if (userId.length !== 18 || isNaN(userId)) return msg.reply("Invalid user!");
+			if (userId.length !== 18 || isNaN(userId)) return msg.reply("Invalid user!").catch((e) => { });
 			msg.guild.members.fetch().then((guildMembers) => {
 				let member = guildMembers.get(userId);
-				if (typeof (member) === "undefined") return msg.reply("That user could not be found.");
+				if (typeof (member) === "undefined") return msg.reply("That user could not be found.").catch((e) => { });
 				msg.reply(member.user.displayAvatarURL({ size: 2048 }));
 			});
 		} else {
-			msg.reply(msg.member.user.displayAvatarURL({ size: 2048 }));
+			msg.reply(msg.member.user.displayAvatarURL({ size: 2048 })).catch((e) => { });
 		}
 
 	}

@@ -20,7 +20,7 @@ function onMessageCreate(cfg, client, db, msg) {
 				"\n"// +
 				// USESQL "You are now on level **" + d.get("msgRewardsMsgCount." + msg.author.id) / cfg.msgRewards.msgsBetweenLevelUp + "**!"
 			);
-		msg.channel.send({ embeds: [embed] });
+		msg.channel.send({ embeds: [embed] }).catch((e) => { });
 			*/}
 
 	// USESQL if (d.get("msgRewardsMsgCount." + msg.author.id) % cfg.msgRewards.msgsBetweenRewards === 0) { // if it is reward time

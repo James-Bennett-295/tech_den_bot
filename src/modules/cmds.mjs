@@ -26,17 +26,17 @@ function handleCmd(cfg, client, db, msg, args, cmdName) {
 	timestamps.set(msg.author.id, now);
 	setTimeout(() => timestamps.delete(msg.author.id), cmd.cooldown);
 
-	if (cmd.botOwnerOnly && cfg.botOwnerId !== msg.author.id) return msg.reply("Only the bot owner is allowed to use that command!");
+	if (cmd.botOwnerOnly && cfg.botOwnerId !== msg.author.id) return msg.reply("Only the bot owner is allowed to use that command!").catch((e) => { });
 
-	if (cmd.staffOnly && !msg.member.roles.cache.has(cfg.roles.staff)) return msg.reply("Only staff are allowed to use that command!");
+	if (cmd.staffOnly && !msg.member.roles.cache.has(cfg.roles.staff)) return msg.reply("Only staff are allowed to use that command!").catch((e) => { });
 
 	if (cmd.minArgs > args.length) {
 		if (cmd.minArgs === 1) {
-			msg.reply("This command requires **1** argument but you didn't provide any. Run `!help command " + cmdName + "` if you need help with this command.");
+			msg.reply("This command requires **1** argument but you didn't provide any. Run `!help command " + cmdName + "` if you need help with this command.").catch((e) => { });
 		} else if (args.length === 0) {
-			msg.reply("This command requires **" + cmd.minArgs + "** arguments but you didn't provide any. Run `!help command " + cmdName + "` if you need help with this command.");
+			msg.reply("This command requires **" + cmd.minArgs + "** arguments but you didn't provide any. Run `!help command " + cmdName + "` if you need help with this command.").catch((e) => { });
 		} else {
-			msg.reply("This command requires **" + cmd.minArgs + "** arguments but you only provided **" + args.length + "**. Run `!help command " + cmdName + "` if you need help with this command.");
+			msg.reply("This command requires **" + cmd.minArgs + "** arguments but you only provided **" + args.length + "**. Run `!help command " + cmdName + "` if you need help with this command.").catch((e) => { });
 		}
 		return;
 	}
@@ -45,7 +45,7 @@ function handleCmd(cfg, client, db, msg, args, cmdName) {
 		cmd.execute(cfg, client, db, msg, args);
 	} catch (err) {
 		logger.error(err);
-		msg.reply("Sorry, something went wrong.");
+		msg.reply("Sorry, something went wrong.").catch((e) => { });
 	}
 
 }
@@ -130,7 +130,8 @@ function onMessageCreate(cfg, client, db, msg) {
 					message.delete()
 						.catch(e => { });
 				});
-			});
+			})
+			.catch((e) => { });
 
 	}
 

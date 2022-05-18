@@ -27,7 +27,7 @@ export default {
 			if (breeds.names.includes(breedName)) {
 				url += "&breed_ids=" + breeds.index[breedName];
 			} else {
-				return msg.reply("Breed not found!");
+				return msg.reply("Breed not found!").catch((e) => { });
 			}
 		}
 
@@ -117,8 +117,9 @@ export default {
 		msg.reply({ components: [row], embeds: [embed] })
 			.then((message) => {
 				collector.on("end", (collected) => {
-					message.edit({ components: [] });
+					message.edit({ components: [] }).catch((e) => { });
 				});
-			});
+			})
+			.catch((e) => { });
 	}
 }

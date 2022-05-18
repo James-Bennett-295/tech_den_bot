@@ -14,21 +14,21 @@ export default {
 		let remindTime = now.getTime();
 		let n;
 		for (let i in splitTime) {
-			if (splitTime[i].length < 2) return msg.reply("Invalid time format!");
+			if (splitTime[i].length < 2) return msg.reply("Invalid time format!").catch((e) => { });
 			switch (splitTime[i].charAt(splitTime[i].length - 1)) {
 				case 'm':
 					n = parseInt(splitTime[i].slice(0, -1));
-					if (isNaN(n)) return msg.reply("Invalid time format!");
+					if (isNaN(n)) return msg.reply("Invalid time format!").catch((e) => { });
 					remindTime += n * 60000;
 					break;
 				case 'h':
 					n = parseInt(splitTime[i].slice(0, -1));
-					if (isNaN(n)) return msg.reply("Invalid time format!");
+					if (isNaN(n)) return msg.reply("Invalid time format!").catch((e) => { });
 					remindTime += n * 3600000;
 					break;
 				case 'd':
 					n = parseInt(splitTime[i].slice(0, -1));
-					if (isNaN(n)) return msg.reply("Invalid time format!");
+					if (isNaN(n)) return msg.reply("Invalid time format!").catch((e) => { });
 					remindTime += n * 86400000;
 					break;
 				default:
@@ -36,7 +36,7 @@ export default {
 			}
 		}
 
-		if (remindTime > 604800000 + now.getTime()) return msg.reply("The time you enter must be no longer than a week!");
+		if (remindTime > 604800000 + now.getTime()) return msg.reply("The time you enter must be no longer than a week!").catch((e) => { });
 
 		args.shift();
 
@@ -48,7 +48,8 @@ export default {
 					INSERT INTO reminders (time, channel, msg, user, reply)
 					VALUES (?, ?, ?, ?, ?);
 				`, remindTime.toString(), msg.channel.id, remindMsg, msg.author.id, replyMsg.id);
-			});
+			})
+			.catch((e) => { });
 
 	}
 }

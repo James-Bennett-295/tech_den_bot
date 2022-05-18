@@ -19,7 +19,7 @@ export default {
 					lockdownEnabled = false;
 				}
 
-				msg.reply(lockdownEnabled ? "Disabling lockdown!" : "Enabling lockdown!")
+				msg.reply(lockdownEnabled ? "Disabling lockdown!" : "Enabling lockdown!").catch((e) => { });
 
 				msg.guild.channels.cache.forEach((channel) => {
 					if (!channel.parent || !cfg.lockdownCategories.includes(channel.parent.id)) return;

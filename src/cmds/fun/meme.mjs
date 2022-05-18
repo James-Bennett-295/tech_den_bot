@@ -21,10 +21,10 @@ export default {
 		/* input validation */
 		let subreddit;
 		if (args[0]) {
-			if (args[0].toLowerCase() == "listsubreddits") return msg.reply("**Subreddits:**\n\t`r/" + subredditLs.join("`\n\t`r/") + "`");
+			if (args[0].toLowerCase() == "listsubreddits") return msg.reply("**Subreddits:**\n\t`r/" + subredditLs.join("`\n\t`r/") + "`").catch((e) => { });
 			subreddit = args[0];
 			if (subreddit.startsWith("r/")) subreddit = subreddit.slice(2);
-			if (!subredditLs.includes(subreddit)) return msg.reply("That subreddit is not an option! Run `!meme ListSubreddits` to see which subreddits you can choose.");
+			if (!subredditLs.includes(subreddit)) return msg.reply("That subreddit is not an option! Run `!meme ListSubreddits` to see which subreddits you can choose.").catch((e) => { });
 		} else {
 			subreddit = subredditLs[Math.floor(Math.random() * (subredditLs.length - 1))];
 		}
@@ -34,7 +34,7 @@ export default {
 
 				let postNum;
 				if (args[1]) {
-					if (isNaN(args[1]) || !(1 <= parseInt(args[1]) && parseInt(args[1]) <= data.data.dist)) return msg.reply("That post number is not an option! It must be a number between 1 and " + data.data.dist + ".");
+					if (isNaN(args[1]) || !(1 <= parseInt(args[1]) && parseInt(args[1]) <= data.data.dist)) return msg.reply("That post number is not an option! It must be a number between 1 and " + data.data.dist + ".").catch((e) => { });
 					postNum = parseInt(args[1]) - 1;
 				} else {
 					postNum = Math.floor(Math.random() * data.data.dist);
@@ -42,7 +42,7 @@ export default {
 
 				let post = data.data.children[postNum].data;
 
-				if (post.over_18 && !msg.channel.nsfw) return msg.reply("Sorry, but the meme I was going to send is marked as NSFW and this channel is not.");
+				if (post.over_18 && !msg.channel.nsfw) return msg.reply("Sorry, but the meme I was going to send is marked as NSFW and this channel is not.").catch((e) => { });
 
 				let embed = new discord.MessageEmbed()
 					.setColor("AQUA")
@@ -122,9 +122,10 @@ export default {
 						return msg.reply({ embeds: [embed], components: [row] })
 							.then((message) => {
 								collector.on("end", (collected) => {
-									message.edit({ components: [] });
+									message.edit({ components: [] }).catch((e) => { });
 								});
-							});
+							})
+							.catch((e) => { });
 
 					} else if (post.secure_media && post.secure_media.type && post.secure_media.type === "imgur.com") {
 						embed.setImage(post.secure_media.oembed.thumbnail_url.split('?')[0]);
@@ -133,7 +134,7 @@ export default {
 					}
 				}
 
-				msg.reply({ embeds: [embed] });
+				msg.reply({ embeds: [embed] }).catch((e) => { });
 
 			})
 			.catch(err => {

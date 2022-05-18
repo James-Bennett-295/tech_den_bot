@@ -31,29 +31,29 @@ export default {
 					fileType = "json";
 					break;
 				case "undefined":
-					msg.reply("EVAL OUTPUT WAS UNDEFINED");
+					msg.reply("EVAL OUTPUT WAS UNDEFINED").catch((e) => { });
 					return;
 				default:
 					evalOutStr = evalOut.toString();
 					fileType = "js";
 			}
 			if (botTokenPattern.test(evalOutStr)) {
-				return msg.reply("EVAL OUTPUT CONTAINED A VALID BOT TOKEN SO WAS NOT SENT");
+				return msg.reply("EVAL OUTPUT CONTAINED A VALID BOT TOKEN SO WAS NOT SENT").catch((e) => { });
 			}
 			let outFile = new discord.MessageAttachment(Buffer.from(evalOutStr), "EVAL-OUT." + fileType);
 			msg.reply({ content: "**[SUCCESS]**\nTYPE: `" + typeof evalOut + "`", files: [outFile] }).catch((err) => {
 				logger.error("[eval cmd]: " + err);
-				msg.channel.send("Failed to send eval output.");
+				msg.channel.send("Failed to send eval output.").catch((e) => { });
 			});
 		} catch (err) {
 			const errStr = err.toString();
 			if (botTokenPattern.test(errStr)) {
-				return msg.reply("EVAL ERROR CONTAINED VALID BOT TOKEN SO WAS NOT SENT");
+				return msg.reply("EVAL ERROR CONTAINED VALID BOT TOKEN SO WAS NOT SENT").catch((e) => { });
 			}
 			const errFile = new discord.MessageAttachment(Buffer.from(errStr), "EVAL-ERR.js");
 			msg.reply({ content: "**[ERROR]**", files: [errFile] }).catch((err) => {
 				logger.error("[eval cmd]: " + err);
-				msg.channel.send("Failed to send eval error.");
+				msg.channel.send("Failed to send eval error.").catch((e) => { });
 			});
 		}
 

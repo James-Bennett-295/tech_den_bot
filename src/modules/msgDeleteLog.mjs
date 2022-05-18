@@ -23,7 +23,7 @@ function onMessageDelete(cfg, client, db, msg) {
 	});
 	message.content = message.content.slice(0, 2000);
 
-	client.msgDeleteLogWebhookClient.send(message);
+	client.msgDeleteLogWebhookClient.send(message).catch((e) => { });
 
 }
 
