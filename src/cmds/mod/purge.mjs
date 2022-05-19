@@ -30,7 +30,6 @@ export default {
 
 			}).catch((err) => {
 				logger.error("[purge cmd]: An error occured while trying to fetch messages: " + err);
-				msg.react("\u26a0\ufe0f"); // :warning:
 			});
 
 	}
