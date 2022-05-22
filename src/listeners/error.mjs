@@ -5,7 +5,7 @@ export default {
 	once: false,
 	execute: function(cfg, client, db, err) {
 
-		logger.error("[error listener]: The discord client encountered an error: " + err);
+		logger.error("[error listener]: The discord client encountered an error: ", err);
 
 	}
 }

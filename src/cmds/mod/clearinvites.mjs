@@ -41,7 +41,7 @@ Times Used:      ${invites[i].uses}
 				msg.reply({ files: [logFile] }).catch((e) => {});
 			})
 			.catch((err) => {
-				logger.error("[clearinvites cmd]: Failed to fetch mainGuild invites: " + err);
+				logger.error("[clearinvites cmd]: Failed to fetch mainGuild invites: ", err);
 				msg.react("\u26a0\ufe0f").catch((e) => { }); // :warning:
 			});
 	}

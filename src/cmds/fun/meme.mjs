@@ -138,7 +138,7 @@ export default {
 
 			})
 			.catch(err => {
-				logger.error("[meme command]: An error occured trying to fetch data from https://www.reddit.com/r/" + subreddit + "/hot.json\nERROR: " + err);
+				logger.error("[meme command]: An error occured trying to fetch data from https://www.reddit.com/r/" + subreddit + "/hot.json\nERROR: ", err);
 			});
 
 	}

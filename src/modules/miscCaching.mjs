@@ -15,12 +15,12 @@ function onStart(cfg, client, db) {
 			}
 			writeFile("./cache/randomduk.json", JSON.stringify(randomdukData))
 				.catch(() => {
-					logger.error("[miscCaching module]: Failed to write './cache/randomduk.json' file: " + err);
+					logger.error("[miscCaching module]: Failed to write './cache/randomduk.json' file: ", err);
 				})
 			logger.debug("[miscCaching module]: Cached randomduk");
 		})
 		.catch((err) => {
-			logger.error("[miscCaching module]: Failed to fetch data from https://random-d.uk/api/v2/list\nERROR: " + err);
+			logger.error("[miscCaching module]: Failed to fetch data from https://random-d.uk/api/v2/list\n", err);
 		});
 
 	logger.debug("[miscCaching module]: Caching thecatapiBreeds...");
@@ -42,12 +42,12 @@ function onStart(cfg, client, db) {
 			}
 			writeFile("./cache/thecatapiBreeds.json", JSON.stringify(thecatapiBreedsData))
 				.catch((err) => {
-					logger.error("[miscCaching module]: Failed to write './cache/thecatapiBreeds.json' file: " + err);
+					logger.error("[miscCaching module]: Failed to write './cache/thecatapiBreeds.json' file: ", err);
 				});
 			logger.debug("[miscCaching module]: Cached thecatapiBreeds");
 		})
 		.catch((err) => {
-			logger.error("[miscCaching module]: Failed to fetch data from https://api.thecatapi.com/v1/breeds\nERROR: " + err);
+			logger.error("[miscCaching module]: Failed to fetch data from https://api.thecatapi.com/v1/breeds\n", err);
 		});
 
 }
@@ -59,7 +59,7 @@ function onReady(cfg, client, db) {
 			client.memberCount = members.filter(m => !m.user.bot).size;
 			logger.debug("[miscCaching module]: memberCount cached");
 		} catch (err) {
-			logger.error("[miscCaching module]: Failed to cache memberCount: " + err);
+			logger.error("[miscCaching module]: Failed to cache memberCount: ", err);
 		}
 	});
 

@@ -43,7 +43,7 @@ export default {
 				if (err.status === 404) {
 					return msg.reply("No definitions found.").catch((e) => { });
 				}
-				logger.error("[word cmd]: Failed to fetch word info: " + err);
+				logger.error("[word cmd]: Failed to fetch word info: ", err);
 				msg.reply("Sorry but something went wrong while trying to fetch the word info.").catch((e) => { });
 			});
 

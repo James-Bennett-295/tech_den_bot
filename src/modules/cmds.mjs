@@ -44,7 +44,7 @@ function handleCmd(cfg, client, db, msg, args, cmdName) {
 	try {
 		cmd.execute(cfg, client, db, msg, args);
 	} catch (err) {
-		logger.error(err);
+		logger.error("Failed to execute \"" + cmdName + "\" cmd.", err);
 		msg.reply("Sorry, something went wrong.").catch((e) => { });
 	}
 
@@ -69,7 +69,7 @@ const onStart = async (cfg, client, db) => {
 				client.categoryCmds[cmd.category].push(cmd.name);
 				if (!client.cmdCategories.includes(cmd.category)) client.cmdCategories.push(cmd.category);
 			} catch (err) {
-				logger.error("[cmds module]: failed to load command file: " + folder + "/" + file + "\nERROR: " + err);
+				logger.error("[cmds module]: failed to load command file: " + folder + "/" + file + "\n", err);
 			}
 		}
 	}

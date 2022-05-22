@@ -29,7 +29,7 @@ export default {
 				msg.channel.bulkDelete(messages);
 
 			}).catch((err) => {
-				logger.error("[purge cmd]: An error occured while trying to fetch messages: " + err);
+				logger.error("[purge cmd]: An error occured while trying to fetch messages: ", err);
 			});
 
 	}

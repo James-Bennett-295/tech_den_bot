@@ -41,7 +41,7 @@ export default {
 				if (typeof err.status !== null && err.status === 404) {
 					return msg.reply("That IP does not exist.").catch((e) => { });
 				}
-				logger.error("[ip cmd]: Failed to get IP info: " + err);
+				logger.error("[ip cmd]: Failed to get IP info: ", err);
 			});
 
 	}

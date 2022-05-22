@@ -17,7 +17,7 @@ export default {
 			WHERE user = ?;
 		`, msg.author.id, (err, row) => {
 			if (err !== null) {
-				logger.error("[balance cmd]: Failed to fetch user's balance from database: " + err);
+				logger.error("[balance cmd]: Failed to fetch user's balance from database: ", err);
 				msg.reply("Sorry but I failed to get your balance.").catch((e) => { });
 				return;
 			}

@@ -42,7 +42,7 @@ export default {
 			}
 			let outFile = new discord.MessageAttachment(Buffer.from(evalOutStr), "EVAL-OUT." + fileType);
 			msg.reply({ content: "**[SUCCESS]**\nTYPE: `" + typeof evalOut + "`", files: [outFile] }).catch((err) => {
-				logger.error("[eval cmd]: " + err);
+				logger.error("[eval cmd]: ", err);
 				msg.channel.send("Failed to send eval output.").catch((e) => { });
 			});
 		} catch (err) {
@@ -52,7 +52,7 @@ export default {
 			}
 			const errFile = new discord.MessageAttachment(Buffer.from(errStr), "EVAL-ERR.js");
 			msg.reply({ content: "**[ERROR]**", files: [errFile] }).catch((err) => {
-				logger.error("[eval cmd]: " + err);
+				logger.error("[eval cmd]: ", err);
 				msg.channel.send("Failed to send eval error.").catch((e) => { });
 			});
 		}

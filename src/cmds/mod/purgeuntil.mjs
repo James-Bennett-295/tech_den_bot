@@ -30,7 +30,7 @@ export default {
 				msg.channel.bulkDelete(messages);
 
 			}).catch((err) => {
-				logger.error("[purgeuntil cmd]: An error occured while trying to fetch messages: " + err);
+				logger.error("[purgeuntil cmd]: An error occured while trying to fetch messages: ", err);
 			});
 
 	}

@@ -5,7 +5,7 @@ export default {
 	once: false,
 	execute: function(cfg, client, db, warningData) {
 
-		logger.error("[invalidRequestWarning listener]: Recieved warning: " + JSON.stringify(warningData, null, 2));
+		logger.warn("[invalidRequestWarning listener]: Recieved warning: " + JSON.stringify(warningData, null, 2));
 
 	}
 }
