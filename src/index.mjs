@@ -56,9 +56,9 @@ for (let i = 0; i < eventFiles.length; i++) {
 	const listenerMjs = await import("./listeners/" + eventFiles[i]);
 	const listener = listenerMjs.default;
 	if (listener.once) {
-		client.once(listener.name, (...args) => listener.execute(cfg, client, db, ...args));
+		client.once(listener.name, (...args) => listener.exe(cfg, client, db, ...args));
 	} else {
-		client.on(listener.name, (...args) => listener.execute(cfg, client, db, ...args));
+		client.on(listener.name, (...args) => listener.exe(cfg, client, db, ...args));
 	}
 }
 

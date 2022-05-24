@@ -11,7 +11,7 @@ export default {
 	category: "Moderation",
 	botOwnerOnly: false,
 	staffOnly: true,
-	execute: function (cfg, client, db, msg, args) {
+	exe: function (cfg, client, db, msg, args) {
 
 		if (!msgIdPattern.test(args[0])) {
 			return msg.reply("Invalid message ID provided").catch((e) => { });

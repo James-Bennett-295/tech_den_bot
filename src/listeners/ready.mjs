@@ -3,7 +3,7 @@ import logger from "@james-bennett-295/logger";
 export default {
 	name: "ready",
 	once: true,
-	execute: function (cfg, client, db) {
+	exe: function (cfg, client, db) {
 
 		logger.info("Logged in as " + client.user.tag);
 

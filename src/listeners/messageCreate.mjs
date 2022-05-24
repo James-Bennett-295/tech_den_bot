@@ -1,7 +1,7 @@
 export default {
   name: "messageCreate",
   once: false,
-  execute: function (cfg, client, db, msg) {
+  exe: function (cfg, client, db, msg) {
 
     if (msg.guild === null) return;
 

@@ -10,7 +10,7 @@ export default {
 	category: "Fun",
 	botOwnerOnly: false,
 	staffOnly: false,
-	execute: async (cfg, client, db, msg, args) => {
+	exe: async (cfg, client, db, msg, args) => {
 
 		let data = await readJson("./cache/randomduk.json");
 

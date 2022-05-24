@@ -9,7 +9,7 @@ export default {
 	category: "Mathematics",
 	botOwnerOnly: false,
 	staffOnly: false,
-	execute: function (cfg, client, db, msg, args) {
+	exe: function (cfg, client, db, msg, args) {
 
 		if (!decPattern.test(args[0])) {
 			return msg.reply("Invalid number!").catch((e) => { });

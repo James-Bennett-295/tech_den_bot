@@ -7,7 +7,7 @@ export default {
 	category: "Information",
 	botOwnerOnly: false,
 	staffOnly: false,
-	execute: function(cfg, client, db, msg, args) {
+	exe: function(cfg, client, db, msg, args) {
 
 		let member;
 		if (args[0]) {

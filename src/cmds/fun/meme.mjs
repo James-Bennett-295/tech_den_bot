@@ -16,7 +16,7 @@ export default {
 	category: "Fun",
 	botOwnerOnly: false,
 	staffOnly: false,
-	execute: function(cfg, client, db, msg, args) {
+	exe: function(cfg, client, db, msg, args) {
 
 		/* input validation */
 		let subreddit;

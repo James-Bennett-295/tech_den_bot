@@ -11,7 +11,7 @@ export default {
 	category: "Utility",
 	botOwnerOnly: false,
 	staffOnly: false,
-	execute: function (cfg, client, db, msg, args) {
+	exe: function (cfg, client, db, msg, args) {
 
 		let hex = args[0];
 

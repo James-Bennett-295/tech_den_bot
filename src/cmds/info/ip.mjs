@@ -11,7 +11,7 @@ export default {
 	category: "Information",
 	botOwnerOnly: false,
 	staffOnly: false,
-	execute: function (cfg, client, db, msg, args) {
+	exe: function (cfg, client, db, msg, args) {
 
 		const ip = args[0];
 

@@ -7,7 +7,7 @@ export default {
 	category: "Fun",
 	botOwnerOnly: false,
 	staffOnly: false,
-	execute: function(cfg, client, db, msg, args) {
+	exe: function(cfg, client, db, msg, args) {
 
 		msg.reply("Your PP:\t8" + "=".repeat(Math.floor(Math.random() * 12) + 1) + "D").catch((e) => { });
 

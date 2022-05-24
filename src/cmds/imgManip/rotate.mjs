@@ -10,7 +10,7 @@ export default {
 	category: "Image Manipulation",
 	botOwnerOnly: false,
 	staffOnly: false,
-	execute: function(cfg, client, db, msg, args) {
+	exe: function(cfg, client, db, msg, args) {
 
 		findImg(msg)
 			.then((attachment) => {

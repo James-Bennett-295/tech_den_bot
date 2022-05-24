@@ -42,7 +42,7 @@ function handleCmd(cfg, client, db, msg, args, cmdName) {
 	}
 
 	try {
-		cmd.execute(cfg, client, db, msg, args);
+		cmd.exe(cfg, client, db, msg, args);
 	} catch (err) {
 		logger.error("Failed to execute \"" + cmdName + "\" cmd.", err);
 		msg.reply("Sorry, something went wrong.").catch((e) => { });

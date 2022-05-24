@@ -12,7 +12,7 @@ export default {
 	category: "Utility",
 	botOwnerOnly: true,
 	staffOnly: false,
-	execute: function (cfg, client, db, msg, args) {
+	exe: function (cfg, client, db, msg, args) {
 
 		let code = args.join(' ');
 

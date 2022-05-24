@@ -10,7 +10,7 @@ export default {
 	category: "Moderation",
 	botOwnerOnly: false,
 	staffOnly: true,
-	execute: function (cfg, client, db, msg, args) {
+	exe: function (cfg, client, db, msg, args) {
 
 		msg.react("\ud83d\udd01").catch((e) => { }); // :reload:
 

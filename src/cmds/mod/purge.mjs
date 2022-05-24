@@ -9,7 +9,7 @@ export default {
 	category: "Moderation",
 	botOwnerOnly: false,
 	staffOnly: true,
-	execute: function (cfg, client, db, msg, args) {
+	exe: function (cfg, client, db, msg, args) {
 
 		/* input validation */
 		if (isNaN(args[0])) {

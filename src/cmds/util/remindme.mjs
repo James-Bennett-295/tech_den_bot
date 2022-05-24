@@ -7,7 +7,7 @@ export default {
 	category: "Utility",
 	botOwnerOnly: false,
 	staffOnly: false,
-	execute: function (cfg, client, db, msg, args) {
+	exe: function (cfg, client, db, msg, args) {
 
 		let splitTime = args[0].split(',');
 		let now = new Date();

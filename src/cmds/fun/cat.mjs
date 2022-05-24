@@ -11,7 +11,7 @@ export default {
 	category: "Fun",
 	botOwnerOnly: false,
 	staffOnly: false,
-	execute: async (cfg, client, db, msg, args) => {
+	exe: async (cfg, client, db, msg, args) => {
 
 		let breeds = await readJson("./cache/thecatapiBreeds.json");
 

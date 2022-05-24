@@ -7,7 +7,7 @@ export default {
 	category: "Conversion",
 	botOwnerOnly: false,
 	staffOnly: false,
-	execute: function (cfg, client, db, msg, args) {
+	exe: function (cfg, client, db, msg, args) {
 
 		if (isNaN(args[0])) {
 			return msg.reply("Unix timestamp input is not a valid number.").catch((e) => { });

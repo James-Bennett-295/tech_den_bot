@@ -7,7 +7,7 @@ export default {
 	category: "Utility",
 	botOwnerOnly: false,
 	staffOnly: false,
-	execute: function(cfg, client, db, msg, args) {
+	exe: function(cfg, client, db, msg, args) {
 
 		msg.reply("Pong! \ud83c\udfd3").catch((e) => { });
 
