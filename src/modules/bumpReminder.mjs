@@ -11,7 +11,7 @@ function onMessageCreate(cfg, client, db, msg) {
 		keyValpairs.set("bumpReminderTime", now.getTime() + bumpCooldown);
 		logger.debug("[bumpReminder module]: Bump reminder timeout set");
 		setTimeout(() => {
-			msg.channel.send("This server can now be bumped again!").catch((e) => { });
+			client.mainGuild.channels.cache.get(cfg.channels.bots).send("This server can now be bumped again!").catch((e) => { });
 		}, bumpCooldown);
 	}
 
