@@ -9,7 +9,7 @@ export default {
 	staffOnly: false,
 	exe: function (cfg, client, db, msg, args) {
 
-		const txt = args.join(" ").split("").join(" ").substring(0, 1999);
+		const txt = args.join(" ").split("").join(" ").substring(0, 2000);
 
 		msg.reply({ content: txt, allowedMentions: { parse: [] } }).catch((e) => { });
 
