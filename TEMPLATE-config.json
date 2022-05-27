@@ -1,12 +1,12 @@
 {
 	"app": {
-		"token": "BOTTOKEN"
+		"token": "BotToken"
 	},
 	"msgDeleteLog": {
-		"webhookUrl": "WEBHOOKURL"
+		"webhookUrl": "WebhookURL"
 	},
 	"cmds": {
-		"prefix": ";",
+		"prefix": "^",
 		"blockedUsers": []
 	},
 	"msgRewards": {
@@ -32,7 +32,7 @@
 		"statuses": [
 			[
 				"LISTENING",
-				";help"
+				"^help"
 			],
 			[
 				"WATCHING",
@@ -44,5 +44,9 @@
 	"lockdownCategories": [
 		"947278057855656038",
 		"948998294238027817"
-	]
+	],
+	"channels": {
+		"joinLog": "955170199936589884",
+		"bots": "947290292535574598"
+	}
 }
