@@ -32,8 +32,8 @@ export default {
 				categoriesLower.push(client.cmdCategories[i].toLowerCase());
 			}
 			// if category exists
-			if (categoriesLower.includes(args[1].toLowerCase())) {
-				let categoryName = client.cmdCategories[categoriesLower.indexOf(args[1].toLowerCase())];
+			if (categoriesLower.includes(args.slice(1, args.length).join(" ").toLowerCase())) {
+				let categoryName = client.cmdCategories[categoriesLower.indexOf(args.slice(1, args.length).join(" ").toLowerCase())];
 				embed
 					.setTitle("Help: " + categoryName + " category. \ud83d\udcdc")
 					.setDescription("Run `" + cfg.cmds.prefix + "help command <command>` to get help with a command.\n\n**Commands:**\n`" + client.categoryCmds[categoryName].join("`\n`") + "`");
@@ -41,7 +41,7 @@ export default {
 				// if category doesn't exist
 			} else {
 
-				let matches = stringSimilarity.findBestMatch(args[1].toLowerCase(), categoriesLower);
+				let matches = stringSimilarity.findBestMatch(args.slice(1, args.length).join(" ").toLowerCase(), categoriesLower);
 
 				const btnYesId = (client.btnId++).toString();
 				let btnYes = new discord.MessageButton()
