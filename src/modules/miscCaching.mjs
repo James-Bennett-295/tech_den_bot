@@ -36,7 +36,7 @@ function onStart(cfg, client, db) {
 				"index": {},
 				"names": []
 			}
-			for (let i in breedIds) {
+			for (let i = 0; i < breedIds.length; i++) {
 				thecatapiBreedsData.index[breedNames[i]] = breedIds[i];
 				thecatapiBreedsData.names.push(breedNames[i]);
 			}

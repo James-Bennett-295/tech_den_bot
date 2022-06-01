@@ -1,6 +1,10 @@
 import discord from "discord.js";
 import logger from "@james-bennett-295/logger";
 
+/* Imports for use in eval */
+import fs from "node:fs";
+/* * * * * * * * * * * * * */
+
 let botTokenPattern = /[a-zA-Z0-9+/=\-_]{24}\.[a-zA-Z0-9+/=\-_]{6}\.[a-zA-Z0-9+/=\-_]{27}/;
 
 export default {

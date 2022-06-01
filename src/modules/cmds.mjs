@@ -58,18 +58,18 @@ const onStart = async (cfg, client, db) => {
 	client.categoryCmds = {}
 	const cmdFolders = fs.readdirSync("./src/cmds/");
 
-	for (const folder of cmdFolders) {
-		const cmdFiles = fs.readdirSync("./src/cmds/" + folder).filter(file => file.endsWith(".mjs"));
-		for (const file of cmdFiles) {
+	for (let i = 0; i < cmdFolders.length; i++) {
+		const cmdFiles = fs.readdirSync("./src/cmds/" + cmdFolders[i]).filter(file => file.endsWith(".mjs"));
+		for (let j = 0; j < cmdFiles.length; j++) {
 			try {
-				const cmdMjs = await import("../cmds/" + folder + "/" + file);
+				const cmdMjs = await import("../cmds/" + cmdFolders[i] + "/" + cmdFiles[j]);
 				const cmd = cmdMjs.default;
 				client.cmds.set(cmd.name, cmd);
 				if (!client.categoryCmds[cmd.category]) client.categoryCmds[cmd.category] = [];
 				client.categoryCmds[cmd.category].push(cmd.name);
 				if (!client.cmdCategories.includes(cmd.category)) client.cmdCategories.push(cmd.category);
 			} catch (err) {
-				logger.error("[cmds module]: failed to load command file: " + folder + "/" + file + "\n", err);
+				logger.error("[cmds module]: failed to load command file: " + cmdFolders[i] + "/" + cmdFiles[j] + "\n", err);
 			}
 		}
 	}

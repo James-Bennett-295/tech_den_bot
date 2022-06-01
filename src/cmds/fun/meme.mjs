@@ -57,10 +57,10 @@ export default {
 
 						let imgs = [];
 						let mediaMetadataKeys = [];
-						for (let i in post.gallery_data.items) { // getting keys arr from post.gallery_data.items[i].media_id as post.media_metadata keys aren't always in display order
+						for (let i = 0; i < post.gallery_data.items.length; i++) { // getting keys arr from post.gallery_data.items[i].media_id as post.media_metadata keys aren't always in display order
 							mediaMetadataKeys.push(post.gallery_data.items[i].media_id);
 						}
-						for (let i in mediaMetadataKeys) {
+						for (let i = 0; i < mediaMetadataKeys.length; i++) {
 							imgs.push({
 								"img": "https://i.redd.it/" + post.media_metadata[mediaMetadataKeys[i]]["s"]["u"].split('?')[0].slice(24),
 								"caption": (post.gallery_data.items[i].caption || null)

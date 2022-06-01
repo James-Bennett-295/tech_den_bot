@@ -13,7 +13,7 @@ export default {
 		let now = new Date();
 		let remindTime = now.getTime();
 		let n;
-		for (let i in splitTime) {
+		for (let i = 0; i < splitTime.length; i++) {
 			if (splitTime[i].length < 2) return msg.reply("Invalid time format!").catch((e) => { });
 			switch (splitTime[i].charAt(splitTime[i].length - 1)) {
 				case 'm':

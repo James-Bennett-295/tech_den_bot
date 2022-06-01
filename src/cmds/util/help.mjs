@@ -28,7 +28,7 @@ export default {
 
 			if (args.length < 2) return msg.reply("You must specify a category!").catch((e) => { });
 			let categoriesLower = [];
-			for (let i in client.cmdCategories) {
+			for (let i = 0; i < client.cmdCategories.length; i++) {
 				categoriesLower.push(client.cmdCategories[i].toLowerCase());
 			}
 			// if category exists
