@@ -8,6 +8,8 @@ function onMessageDelete(cfg, client, db, msg) {
 
 	if (msg.channel.type === "dm") return;
 
+	if (msg.content === "" && msg.attachments.size === 0) return;
+
 	let message = {
 		content: "<@!" + msg.author.id + "> in <#" + msg.channel.id + ">:",
 		username: msg.author.tag.slice(0, 80),
