@@ -16,10 +16,11 @@ function onGuildMemberAdd(cfg, client, db, member) {
 			});
 			Object.assign(client.inviteUses, newInviteUses);
 			let logChannel = client.mainGuild.channels.cache.get(cfg.channels.joinLog);
-			let embed;
+			let embed = new discord.MessageEmbed()
+				.setTitle("User Joined");
 			if (inviteUsed) {
-				embed = new discord.MessageEmbed()
-					.setColor("AQUA")
+				embed
+					.setColor("GREEN")
 					.addFields(
 						{ name: "Member", value: "<@!" + member.user.id + "> (`" + member.user.tag + "`)" },
 						{ name: "Account Created Time", value: "<t:" + Math.floor(member.user.createdAt.getTime() / 1000) + ">" },
@@ -32,8 +33,8 @@ function onGuildMemberAdd(cfg, client, db, member) {
 						{ name: "Invite Expire Time", value: inviteUsed._expiresTimestamp ? "<t:" + Math.floor(inviteUsed._expiresTimestamp / 1000) + ">" : "None" }
 					);
 			} else {
-				embed = new discord.MessageEmbed()
-					.setColor("ORANGE")
+				embed
+					.setColor("YELLOW")
 					.setDescription("Could not find invite used.")
 					.addFields(
 						{ name: "Member", value: "<@!" + member.user.id + "> (`" + member.user.tag + "`)" },
@@ -44,6 +45,19 @@ function onGuildMemberAdd(cfg, client, db, member) {
 		});
 }
 
+function onGuildMemberRemove(cfg, client, db, member) {
+	const logChannel = client.mainGuild.channels.cache.get(cfg.channels.joinLog);
+	const embed = new discord.MessageEmbed()
+		.setColor("RED")
+		.setTitle("User Left")
+		.addFields(
+			{ name: "Member", value: "<@!" + member.user.id + "> (`" + member.user.tag + "`)" },
+			{ name: "Join Date", value: "<t:" + Math.floor(member.joinedTimestamp / 1000) + ">" }
+		)
+	logChannel.send({ embeds: [embed], allowedMentions: { parse: [] } }).catch((e) => { });
+}
+
 export {
-	onGuildMemberAdd
+	onGuildMemberAdd,
+	onGuildMemberRemove
 }
