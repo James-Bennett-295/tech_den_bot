@@ -2,7 +2,13 @@
 	"name": "tech_den_bot",
 	"version": "1.0.0",
 	"main": "./src/index.mjs",
-	"scripts": {},
+	"scripts": {
+		"start": "pm2 start ./src/index.mjs --name tech_den_bot",
+		"reload": "pm2 reload tech_den_bot",
+		"restart": "pm2 restart tech_den_bot",
+		"stop": "pm2 stop tech_den_bot",
+		"monitor": "pm2 monit tech_den_bot"
+	},
 	"type": "module",
 	"dependencies": {
 		"@james-bennett-295/logger": "^2.2.3",
