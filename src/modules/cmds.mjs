@@ -93,6 +93,8 @@ function onMessageCreate(cfg, client, db, msg) {
 
 		let matches = stringSimilarity.findBestMatch(cmdName, Array.from(client.cmds.keys()));
 
+		if (matches.bestMatch.rating < 0.3) return;
+
 		const btnYesId = (client.btnId++).toString();
 		let btnYes = new discord.MessageButton()
 			.setCustomId(btnYesId)
