@@ -32,7 +32,7 @@
 		"statuses": [
 			[
 				"LISTENING",
-				"^help"
+				"{cmdPrefix}help"
 			],
 			[
 				"WATCHING",

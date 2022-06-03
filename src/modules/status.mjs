@@ -14,6 +14,7 @@ function setStatus(cfg, client, db, statusNum) {
 			{
 				name: cfg.status.statuses[statusNum][1]
 					.replace("{userCount}", client.memberCount)
+					.replace("{cmdPrefix}", cfg.cmds.prefix)
 				, type: cfg.status.statuses[statusNum][0]
 			}
 		],
