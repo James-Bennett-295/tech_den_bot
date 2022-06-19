@@ -1,13 +1,6 @@
 import discord from "discord.js";
 
-function onStart(cfg, client, db) {
-	client.msgDeleteLogWebhookClient = new discord.WebhookClient({ url: cfg.msgDeleteLog.webhookUrl });
-}
-
-function onMessageDelete(cfg, client, db, msg) {
-
-	if (msg.channel.type === "dm") return;
-
+function logMsgDelete(cfg, client, db, msg) {
 	if (msg.content === "" && msg.attachments.size === 0) return;
 
 	let message = {
@@ -26,10 +19,25 @@ function onMessageDelete(cfg, client, db, msg) {
 	message.content = message.content.slice(0, 2000);
 
 	client.msgDeleteLogWebhookClient.send(message).catch((e) => { });
+}
 
+function onStart(cfg, client, db) {
+	client.msgDeleteLogWebhookClient = new discord.WebhookClient({ url: cfg.msgDeleteLog.webhookUrl });
+}
+
+function onMessageDelete(cfg, client, db, msg) {
+	logMsgDelete(cfg, client, db, msg);
+}
+
+function onMessageDeleteBulk(cfg, client, db, msgs) {
+
+	msgs.reverse().forEach((msg) => {
+		logMsgDelete(cfg, client, db, msg);
+	});
 }
 
 export {
 	onStart,
-	onMessageDelete
+	onMessageDelete,
+	onMessageDeleteBulk
 }
