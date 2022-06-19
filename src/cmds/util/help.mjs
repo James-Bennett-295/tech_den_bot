@@ -126,6 +126,7 @@ export default {
 								{ name: "Usage", value: cfg.cmds.prefix + cmd.name + " " + (cmd.usage || "") },
 								{ name: "Cooldown", value: (cmd.cooldown / 1000) + "s" },
 								{ name: "Category", value: cmd.category },
+								{ name: "Staff only", value: cmd.staffOnly ? "Yes" : "No" },
 								{ name: "Bot owner only", value: cmd.botOwnerOnly ? "Yes" : "No" }
 							);
 						i.update({ content: null, embeds: [embed], components: [] });
@@ -152,6 +153,7 @@ export default {
 						{ name: "Usage", value: cfg.cmds.prefix + cmd.name + " " + (cmd.usage || "") },
 						{ name: "Cooldown", value: (cmd.cooldown / 1000) + "s" },
 						{ name: "Category", value: cmd.category },
+						{ name: "Staff only", value: cmd.staffOnly ? "Yes" : "No" },
 						{ name: "Bot owner only", value: cmd.botOwnerOnly ? "Yes" : "No" }
 					);
 
