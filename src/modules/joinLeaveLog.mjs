@@ -15,7 +15,7 @@ function onGuildMemberAdd(cfg, client, db, member) {
 				}
 			});
 			Object.assign(client.inviteUses, newInviteUses);
-			let logChannel = client.mainGuild.channels.cache.get(cfg.channels.joinLog);
+			let logChannel = client.mainGuild.channels.cache.get(cfg.channels.joinLeaveLog);
 			let embed = new discord.MessageEmbed()
 				.setTitle("User Joined");
 			if (inviteUsed) {
@@ -46,7 +46,7 @@ function onGuildMemberAdd(cfg, client, db, member) {
 }
 
 function onGuildMemberRemove(cfg, client, db, member) {
-	const logChannel = client.mainGuild.channels.cache.get(cfg.channels.joinLog);
+	const logChannel = client.mainGuild.channels.cache.get(cfg.channels.joinLeaveLog);
 	const embed = new discord.MessageEmbed()
 		.setColor("RED")
 		.setTitle("User Left")
