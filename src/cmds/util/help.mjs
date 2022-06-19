@@ -123,7 +123,7 @@ export default {
 							.setDescription(cmd.description)
 							.addFields(
 								{ name: "Minimum arguments", value: cmd.minArgs.toString() },
-								{ name: "Usage", value: cfg.cmds.prefix + cmd.name + " " + (cmd.usage || "") },
+								{ name: "Usage", value: "`" + cfg.cmds.prefix + cmd.name + (cmd.usage === null ? "" : " " + cmd.usage) + "`" },
 								{ name: "Cooldown", value: (cmd.cooldown / 1000) + "s" },
 								{ name: "Category", value: cmd.category },
 								{ name: "Staff only", value: cmd.staffOnly ? "Yes" : "No" },
@@ -150,7 +150,7 @@ export default {
 					.setDescription(cmd.description)
 					.addFields(
 						{ name: "Minimum arguments", value: cmd.minArgs.toString() },
-						{ name: "Usage", value: cfg.cmds.prefix + cmd.name + " " + (cmd.usage || "") },
+						{ name: "Usage", value: "`" + cfg.cmds.prefix + cmd.name + (cmd.usage === null ? "" : " " + cmd.usage) + "`" },
 						{ name: "Cooldown", value: (cmd.cooldown / 1000) + "s" },
 						{ name: "Category", value: cmd.category },
 						{ name: "Staff only", value: cmd.staffOnly ? "Yes" : "No" },
