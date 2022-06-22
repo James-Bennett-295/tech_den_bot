@@ -32,11 +32,11 @@ function handleCmd(cfg, client, db, msg, args, cmdName) {
 
 	if (cmd.minArgs > args.length) {
 		if (cmd.minArgs === 1) {
-			msg.reply("This command requires **1** argument but you didn't provide any. Run `!help command " + cmdName + "` if you need help with this command.").catch((e) => { });
+			msg.reply("This command requires **1** argument but you didn't provide any. Run `" + cfg.cmds.prefix + "help command " + cmdName + "` if you need help with this command.").catch((e) => { });
 		} else if (args.length === 0) {
-			msg.reply("This command requires **" + cmd.minArgs + "** arguments but you didn't provide any. Run `!help command " + cmdName + "` if you need help with this command.").catch((e) => { });
+			msg.reply("This command requires **" + cmd.minArgs + "** arguments but you didn't provide any. Run `" + cfg.cmds.prefix + "help command " + cmdName + "` if you need help with this command.").catch((e) => { });
 		} else {
-			msg.reply("This command requires **" + cmd.minArgs + "** arguments but you only provided **" + args.length + "**. Run `!help command " + cmdName + "` if you need help with this command.").catch((e) => { });
+			msg.reply("This command requires **" + cmd.minArgs + "** arguments but you only provided **" + args.length + "**. Run `" + cfg.cmds.prefix + "help command " + cmdName + "` if you need help with this command.").catch((e) => { });
 		}
 		return;
 	}
