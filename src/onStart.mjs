@@ -15,6 +15,7 @@ const onStart = async (cfg, client, db) => {
 	client.modules.bumpReminder = await import("./modules/bumpReminder.mjs");
 	client.modules.joinLeaveLog = await import("./modules/joinLeaveLog.mjs");
 	client.modules.strReact = await import("./modules/strReact.mjs");
+	client.modules.crosspost = await import("./modules/crosspost.mjs");
 
 	client.modules.msgDeleteLog.onStart(cfg, client, db);
 	client.modules.cmds.onStart(cfg, client, db);
