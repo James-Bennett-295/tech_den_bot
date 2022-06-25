@@ -3,7 +3,7 @@ export default {
 	minArgs: 2,
 	usage: "<time until reminder. Example: \"2d,7m\" (2 days + 7 minutes)> <reminder text>",
 	cooldown: 30000,
-	description: "See if the bot is responding.",
+	description: "Set a reminder.",
 	category: "Utility",
 	botOwnerOnly: false,
 	staffOnly: false,
