@@ -31,12 +31,17 @@ export default {
 					if (isNaN(n)) return msg.reply("Invalid time format!").catch((e) => { });
 					remindTime += n * 86400000;
 					break;
+				case 'w':
+					n = parseInt(splitTime[i].slice(0, -1));
+					if (isNaN(n)) return msg.reply("Invalid time format!").catch((e) => { });
+					remindTime += n * 604800000;
+					break;
 				default:
 					return msg.reply("Invalid time format!");
 			}
 		}
 
-		if (remindTime > 604800000 + now.getTime()) return msg.reply("The time you enter must be no longer than a week!").catch((e) => { });
+		if (remindTime > 31557600000 + now.getTime()) return msg.reply("The time you enter must be no longer than a year!").catch((e) => { });
 
 		args.shift();
 
