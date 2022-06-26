@@ -29,7 +29,7 @@ function onMessageCreate(cfg, client, db, msg) {
 				embeds: [
 					new discord.MessageEmbed()
 						.setColor("AQUA")
-						.setAuthor({ name: (quoteMsg.author.discriminator === "0000" ? quoteMsg.author.username + " [WebHook]" : quoteMsg.author.tag) + " in #" + quoteMsg.channel.name, iconURL: quoteMsg.member.displayAvatarURL() })
+						.setAuthor({ name: (quoteMsg.author.discriminator === "0000" ? quoteMsg.author.username + " [WebHook]" : quoteMsg.author.tag) + " in #" + quoteMsg.channel.name, iconURL: quoteMsg.author.displayAvatarURL() })
 						.setDescription(quoteMsg.content)
 						.addField("Quoted Message", "[Click here to view](" + msg.content + ")")
 
