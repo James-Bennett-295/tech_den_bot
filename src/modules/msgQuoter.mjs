@@ -22,8 +22,6 @@ function onMessageCreate(cfg, client, db, msg) {
 
 			if (quoteMsg.content === "") return;
 
-			msg.delete().catch((e) => { });
-
 			const webhookMsg = {
 				username: (msg.member.nickname || msg.author.id),
 				avatarURL: msg.member.displayAvatarURL(),
@@ -37,6 +35,8 @@ function onMessageCreate(cfg, client, db, msg) {
 
 				]
 			}
+
+			msg.delete().catch((e) => { });
 
 			msg.channel.fetchWebhooks()
 				.then((webhooks) => {
