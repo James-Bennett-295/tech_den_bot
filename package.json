@@ -14,11 +14,15 @@
 		"@james-bennett-295/logger": "^2.2.3",
 		"@james-bennett-295/writefile": "^1.0.0",
 		"discord.js": "^13.6.0",
-		"jimp": "^0.16.1",
+		"jimp": "^0.16.0",
 		"key-value-pairs": "^1.0.0",
 		"sharp": "^0.30.3",
 		"sqlite3": "^5.0.8",
 		"string-similarity": "^4.0.4",
 		"xkcd-wrapper": "^1.2.8"
+	},
+	"devDependencies": {
+		"@discordjs/rest": "^0.5.0",
+		"discord-api-types": "^0.35.0"
 	}
 }
