@@ -32,6 +32,9 @@ function onMessageDelete(cfg, client, db, msg) {
 function onMessageDeleteBulk(cfg, client, db, msgs) {
 
 	msgs.reverse().forEach((msg) => {
+
+		if (msg.author.bot || msg.webhookId) return;
+
 		logMsgDelete(cfg, client, db, msg);
 	});
 }
