@@ -9,12 +9,11 @@ export default {
 	staffOnly: false,
 	exe: function(cfg, client, db, msg, args) {
 
-		let member;
 		if (args[0]) {
 			let userId = args[0];
-			if (args[0].startsWith('<@!')) {
+			if (args[0].startsWith("<@!")) {
 				userId = userId.slice(3, -1);
-			} else if (args[0].startsWith('<@')) {
+			} else if (args[0].startsWith("<@")) {
 				userId = userId.slice(2, -1);
 			}
 			if (userId.length !== 18 || isNaN(userId)) return msg.reply("Invalid user!").catch((e) => { });
