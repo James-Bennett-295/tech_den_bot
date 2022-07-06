@@ -79,6 +79,7 @@ const onStart = async (cfg, client, db) => {
 function onMessageCreate(cfg, client, db, msg) {
 
 	if (!msg.content.startsWith(cfg.cmds.prefix)) return;
+	if (msg.content.charAt(cfg.cmds.prefix.length) === ' ') return;
 	if (msg.content.length === cfg.cmds.prefix.length) return;
 	if (msg.channel.type === "dm") return;
 
