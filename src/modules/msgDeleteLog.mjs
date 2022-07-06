@@ -6,7 +6,7 @@ function logMsgDelete(cfg, client, db, msg) {
 	let message = {
 		content: "<@!" + msg.author.id + "> in <#" + msg.channel.id + ">:",
 		username: msg.author.tag.slice(0, 80),
-		avatarURL: msg.author.avatarURL(),
+		avatarURL: msg.author.displayAvatarURL({ size: 256 }),
 		allowedMentions: { parse: [] },
 		files: []
 	}
