@@ -62,8 +62,8 @@ function onMessageCreate(cfg, client, db, msg) {
 				if (typeof rowJ === "undefined") {
 					db.run(`
 						INSERT INTO balance (user, balance)
-						VALUES(?, 1);
-					`, msg.author.id);
+						VALUES(?, ?);
+					`, msg.author.id, cfg.msgRewards.rewardAmount);
 				} else {
 					db.run(`
 						UPDATE balance
