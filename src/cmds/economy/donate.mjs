@@ -1,6 +1,7 @@
 import logger from "@james-bennett-295/logger";
 
 const amountPattern = /^0*[1-9]+[0-9]*$/;
+const userIdPattern = /^[0-9]{18}$/;
 
 export default {
 	name: "donate",
@@ -19,14 +20,14 @@ export default {
 
 		const amount = parseInt(args[0]);
 
-		let userId = args[1];
+		let userId;
 		if (args[1].startsWith("<@!")) {
-			userId = userId.slice(3, -1);
+			userId = args[1].slice(3, -1);
 		} else if (args[1].startsWith("<@")) {
-			userId = userId.slice(2, -1);
+			userId = args[1].slice(2, -1);
 		}
 
-		if (userId.length !== 18 || isNaN(userId)) return msg.reply("Invalid user!").catch((e) => { }); // UREGXP
+		if (!userIdPattern.test(userId)) return msg.reply("Invalid user!").catch((e) => { });
 
 		db.get(`
 			SELECT *
