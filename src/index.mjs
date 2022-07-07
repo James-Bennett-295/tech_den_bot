@@ -6,17 +6,19 @@ import keyValPairs from "key-value-pairs";
 import readJson from "./util/readJson.mjs";
 import onStart from "./onStart.mjs";
 
-const cfg = await readJson("./config.json");
+async function main() {
 
-logger.config({
-	debugEnabled: true,
-	logsDir: "./logs/"
-});
+	const cfg = await readJson("./config.json");
 
-let db = new sqlite3.Database("./db.sqlite3");
-keyValPairs.setDb(db);
-db
-	.run(`
+	logger.config({
+		debugEnabled: true,
+		logsDir: "./logs/"
+	});
+
+	let db = new sqlite3.Database("./db.sqlite3");
+	keyValPairs.setDb(db);
+	db
+		.run(`
 		CREATE TABLE IF NOT EXISTS reminders (
 			id				INTEGER		PRIMARY KEY		AUTOINCREMENT,
 			time			TEXT			NOT NULL,
@@ -26,40 +28,57 @@ db
 			reply			TEXT			NOT NULL
 		);
 	`)
-	.run(`
+		.run(`
 		CREATE TABLE IF NOT EXISTS balance (
 			user			TEXT	PRIMARY KEY,
 			balance		INT		NOT NULL
 		);
 	`)
-	.run(`
+		.run(`
 		CREATE TABLE IF NOT EXISTS msgCount (
 			user		TEXT	PRIMARY KEY,
 			count		INT		NOT NULL
 		);
 	`);
 
-const client = new discord.Client({
-	//restTimeOffset: 0,
-	intents: [ // https://discord.com/developers/docs/topics/gateway#list-of-intents
-		discord.Intents.FLAGS.GUILDS,
-		discord.Intents.FLAGS.GUILD_MESSAGES,
-		discord.Intents.FLAGS.GUILD_MEMBERS,
-		discord.Intents.FLAGS.GUILD_INVITES
-	]
-});
+	const client = new discord.Client({
+		//restTimeOffset: 0,
+		intents: [ // https://discord.com/developers/docs/topics/gateway#list-of-intents
+			discord.Intents.FLAGS.GUILDS,
+			discord.Intents.FLAGS.GUILD_MESSAGES,
+			discord.Intents.FLAGS.GUILD_MEMBERS,
+			discord.Intents.FLAGS.GUILD_INVITES
+		]
+	});
 
-onStart(cfg, client, db);
+	onStart(cfg, client, db);
 
-const eventFiles = fs.readdirSync("./src/listeners/").filter(file => file.endsWith(".mjs"));
-for (let i = 0; i < eventFiles.length; i++) {
-	const listenerMjs = await import("./listeners/" + eventFiles[i]);
-	const listener = listenerMjs.default;
-	if (listener.once) {
-		client.once(listener.name, (...args) => listener.exe(cfg, client, db, ...args));
-	} else {
-		client.on(listener.name, (...args) => listener.exe(cfg, client, db, ...args));
+	const eventFiles = fs.readdirSync("./src/listeners/").filter(file => file.endsWith(".mjs"));
+	for (let i = 0; i < eventFiles.length; i++) {
+		const listenerMjs = await import("./listeners/" + eventFiles[i]);
+		const listener = listenerMjs.default;
+		if (listener.once) {
+			client.once(listener.name, (...args) => listener.exe(cfg, client, db, ...args));
+		} else {
+			client.on(listener.name, (...args) => listener.exe(cfg, client, db, ...args));
+		}
 	}
+
+	client.login(cfg.app.token);
+
 }
 
-client.login(cfg.app.token);
+if (fs.readdirSync(".").includes("VACUUMED-db.sqlite3")) {
+
+	logger.info("[main]: Using vacuumed db");
+
+	fs.rename("./db.sqlite3", "./OLD-db.sqlite3", () => {
+
+		fs.rename("./VACUUMED-db.sqlite3", "./db.sqlite3", () => {
+
+			main();
+		});
+	});
+} else {
+	main();
+}

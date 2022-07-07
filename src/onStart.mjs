@@ -1,4 +1,4 @@
-const onStart = async (cfg, client, db) => {
+async function onStart(cfg, client, db) {
 
 	const d = new Date();
 	client.processStartTime = d.getTime();

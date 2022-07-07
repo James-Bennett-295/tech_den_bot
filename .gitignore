@@ -5,3 +5,4 @@ config.json
 db.sqlite3
 package-lock.json
 todo
+*.sqlite3
