@@ -33,17 +33,10 @@ export default {
 				for (let i = 0; i < leaderboardUsers.length; i++) {
 					let member = guildMembers.get(leaderboardUsers[i].user);
 
-					if (typeof member === "undefined") {
-						embed.addField(
-							leaderboardUsers[i].user,
-							leaderboardUsers[i].balance + " coins"
-						);
-					} else {
-						embed.addField(
-							member.user.tag,
-							leaderboardUsers[i].balance + " coins"
-						);
-					}
+					embed.addField(
+						typeof member === "undefined" ? "(" + leaderboardUsers[i].user + ")" : member.user.tag,
+						leaderboardUsers[i].balance + " coins"
+					);
 				}
 
 				msg.reply({ embeds: [embed] }).catch((e) => { });
