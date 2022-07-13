@@ -1,6 +1,6 @@
 function onMessageCreate(cfg, client, db, msg) {
 
-	if (/(^|\s)n+.?(i|1)+.?g+.?((e|3)*.?r|(a|4)+)/i.test(msg.content)) {
+	if (/(^|\s)n+.?(i|1)+.?g+.?g?.?((e|3)*.?r|(a|4)+)/i.test(msg.content)) {
 		msg.react(cfg.guildEmojis.car).catch((e) => { });
 
 	} else if (/(^|\s)n+(o|0)+ +(b+|(s|5)+w+)(i|1)+t+c+h+(e|3)+(s|5)+\?* *.*?$/i.test(msg.content)) {
