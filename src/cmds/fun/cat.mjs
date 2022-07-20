@@ -1,5 +1,5 @@
 import getJson from "../../util/getJson.mjs";
-import discord, { MessageEmbed } from "discord.js";
+import discord from "discord.js";
 import readJson from "../../util/readJson.mjs";
 
 export default {
@@ -56,19 +56,15 @@ export default {
 		let data = await getJson(url + "&page=0");
 		let imgs = [];
 		for (let i = 0; i < data.length; i++) {
-			imgs.push({
-				img: data[i].url,
-				breed: data[i].breeds.length > 0 ? data[i].breeds[0].name : null
-			});
+			imgs.push(data[i].url);
 		}
 
 		let embed = new discord.MessageEmbed()
 			.setColor("AQUA")
 			.setTitle("Here is your cat! \ud83d\udc31")
-			.setURL(imgs[0].img)
-			.setImage(imgs[0].img)
+			.setURL(imgs[0])
+			.setImage(imgs[0])
 			.setFooter({ text: "Source: thecatapi.com" });
-		if (imgs[0].breed !== null) embed.setDescription(imgs[0].breed);
 
 		const onCollect = async (i) => {
 
@@ -87,10 +83,7 @@ export default {
 			if (imgNum >= imgs.length) {
 				data = await getJson(url + "&page=" + Math.ceil(imgNum / 10));
 				for (let i = 0; i < data.length; i++) {
-					imgs.push({
-						img: data[i].url,
-						breed: data[i].breeds.length > 0 ? data[i].breeds[0].name : null
-					});
+					imgs.push(data[i].url);
 				}
 			}
 
@@ -103,10 +96,8 @@ export default {
 			if (embed["description"]) delete embed["description"];
 
 			embed
-				.setURL(imgs[imgNum].img)
-				.setImage(imgs[imgNum].img);
-
-			if (imgs[imgNum].breed !== null) embed.setDescription(imgs[imgNum].breed);
+				.setURL(imgs[imgNum])
+				.setImage(imgs[imgNum]);
 
 			i.update({ components: [row], embeds: [embed] });
 		}
