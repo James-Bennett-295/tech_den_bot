@@ -1,9 +1,9 @@
 import discord from "discord.js";
 
-const jumpUrlPattern = /^https:\/\/discord\.com\/channels\/[0-9]{18}\/[0-9]{18}\/[0-9]{18}$/;
-const guildIdPattern = /(?<=^https:\/\/discord\.com\/channels\/)[0-9]{18}(?=\/[0-9]{18}\/[0-9]{18}$)/;
-const channelIdPattern = /(?<=^https:\/\/discord\.com\/channels\/[0-9]{18}\/)[0-9]{18}(?=\/[0-9]{18}$)/;
-const msgIdPattern = /(?<=^https:\/\/discord\.com\/channels\/[0-9]{18}\/[0-9]{18}\/)[0-9]{18}$/;
+const jumpUrlPattern = /^https:\/\/discord\.com\/channels\/[0-9]{18,19}\/[0-9]{18,19}\/[0-9]{18,19}$/;
+const guildIdPattern = /(?<=^https:\/\/discord\.com\/channels\/)[0-9]{18,19}(?=\/[0-9]{18,19}\/[0-9]{18,19}$)/;
+const channelIdPattern = /(?<=^https:\/\/discord\.com\/channels\/[0-9]{18,19}\/)[0-9]{18,19}(?=\/[0-9]{18,19}$)/;
+const msgIdPattern = /(?<=^https:\/\/discord\.com\/channels\/[0-9]{18,19}\/[0-9]{18,19}\/)[0-9]{18,19}$/;
 
 function onMessageCreate(cfg, client, db, msg) {
 

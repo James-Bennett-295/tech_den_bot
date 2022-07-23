@@ -16,7 +16,7 @@ export default {
 			} else if (args[0].startsWith("<@")) {
 				userId = userId.slice(2, -1);
 			}
-			if (userId.length !== 18 || isNaN(userId)) return msg.reply("Invalid user!").catch((e) => { });
+			if ((userId.length !== 18 && userId.length !== 19) || isNaN(userId)) return msg.reply("Invalid user!").catch((e) => { });
 			msg.guild.members.fetch().then((guildMembers) => {
 				let member = guildMembers.get(userId);
 				if (typeof (member) === "undefined") return msg.reply("That user could not be found.").catch((e) => { });

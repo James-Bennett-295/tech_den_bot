@@ -1,7 +1,7 @@
 import logger from "@james-bennett-295/logger";
 
 const amountPattern = /^0*[1-9]+[0-9]*$/;
-const userIdPattern = /^[0-9]{18}$/;
+const userIdPattern = /^[0-9]{18,19}$/;
 
 export default {
 	name: "donate",

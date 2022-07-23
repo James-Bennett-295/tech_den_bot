@@ -1,6 +1,6 @@
 import logger from "@james-bennett-295/logger";
 
-const msgIdPattern = /^[0-9]{18}$/;
+const msgIdPattern = /^[0-9]{18,19}$/;
 
 export default {
 	name: "purgeuntil",
