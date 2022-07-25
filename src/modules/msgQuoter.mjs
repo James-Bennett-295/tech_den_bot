@@ -20,20 +20,30 @@ function onMessageCreate(cfg, client, db, msg) {
 	quoteMsgChannel.messages.fetch(quoteMsgId)
 		.then((quoteMsg) => {
 
-			if (quoteMsg.content === "") return;
+			const firstAttachment = quoteMsg.attachments.size === 0 ? null : quoteMsg.attachments.entries().next().value[1];
+
+			if (quoteMsg.content === "" && (quoteMsgChannel.nsfw || (!firstAttachment || !firstAttachment.contentType.startsWith("image/")))) return;
+
+			let embed = new discord.MessageEmbed()
+				.setColor("AQUA")
+				.setAuthor({ name: (quoteMsg.author.discriminator === "0000" ? quoteMsg.author.username + " [WebHook]" : quoteMsg.author.tag) + " in #" + quoteMsg.channel.name, iconURL: quoteMsg.author.displayAvatarURL() })
+				.addField("Quoted Message", "[Click here to view](" + msg.content + ")");
+
+			if (quoteMsg.content !== "") {
+				embed.setDescription(quoteMsg.content);
+			}
+
+			if (!quoteMsgChannel.nsfw) {
+				if (firstAttachment && firstAttachment.contentType.startsWith("image/")) {
+					embed.setImage(firstAttachment.proxyURL);
+				}
+			}
 
 			const webhookMsg = {
 				username: (msg.member.nickname || msg.author.id),
 				avatarURL: msg.member.displayAvatarURL(),
 				allowedMentions: { parse: [] },
-				embeds: [
-					new discord.MessageEmbed()
-						.setColor("AQUA")
-						.setAuthor({ name: (quoteMsg.author.discriminator === "0000" ? quoteMsg.author.username + " [WebHook]" : quoteMsg.author.tag) + " in #" + quoteMsg.channel.name, iconURL: quoteMsg.author.displayAvatarURL() })
-						.setDescription(quoteMsg.content)
-						.addField("Quoted Message", "[Click here to view](" + msg.content + ")")
-
-				]
+				embeds: [embed]
 			}
 
 			msg.delete().catch((e) => { });
